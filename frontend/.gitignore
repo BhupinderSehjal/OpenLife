@@ -12,6 +12,21 @@ dist
 dist-ssr
 *.local
 
+.env
+.env.*.local
+.env.local
+.npmrc
+.yarnrc
+.pnp.*
+
+# Build and cache
+.vite
+.cache
+.parcel-cache
+.turbo
+coverage
+.nyc_output
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
