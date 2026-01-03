@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 
+
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
@@ -37,4 +38,28 @@ a {
 ::selection {
   background: rgba(105, 255, 226, 0.35);
   color: #041024;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(18px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    filter: drop-shadow(0 0 0 rgba(105, 255, 226, 0.15));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(105, 255, 226, 0.55));
+  }
+  100% {
+    filter: drop-shadow(0 0 0 rgba(105, 255, 226, 0.15));
+  }
 }
