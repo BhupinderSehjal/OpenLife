@@ -76,6 +76,7 @@ const Hero = () => (
         <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_10px_rgba(105,255,226,0.8)]" />
         Open source · Daily life management
       </div>
+      <h1>Sourav</h1>
       <h1 className="text-3xl font-bold leading-tight text-slate-50 sm:text-4xl lg:text-5xl">
         Track every second. <br />
         <span className="text-emerald-200 drop-shadow-[0_0_18px_rgba(155,249,223,0.6)]">Contribute</span> to build the toolkit.
