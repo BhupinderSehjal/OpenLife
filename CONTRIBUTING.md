@@ -230,6 +230,8 @@ We expect:
 Thank you for helping build **OpenLife** 🌱
 Let’s grow this project together 🚀
 
+- **Contributor:** 👤 GitHub Profile: [Sampad Mondal](https://github.com/SampadMondal-git/)
+
 ---
 
 If you want next, I can:
