@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
@@ -46,7 +48,12 @@ body {
     radial-gradient(900px 520px at 70% 20%, rgba(46, 170, 255, 0.2), transparent 60%),
     radial-gradient(700px 520px at 15% 65%, rgba(78, 219, 122, 0.18), transparent 60%),
     radial-gradient(620px 420px at 55% 80%, rgba(255, 198, 74, 0.16), transparent 60%),
-    linear-gradient(180deg, rgba(5, 7, 12, 0.92) 0%, rgba(11, 15, 24, 0.9) 40%, rgba(5, 7, 12, 0.92) 100%);
+    linear-gradient(
+      180deg,
+      rgba(5, 7, 12, 0.92) 0%,
+      rgba(11, 15, 24, 0.9) 40%,
+      rgba(5, 7, 12, 0.92) 100%
+    );
   animation: aurora-shift 28s linear infinite;
 }
 
@@ -117,7 +124,12 @@ a {
   content: '';
   position: absolute;
   inset: -40% -60%;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.04)
+  );
   transform: rotate(12deg);
   pointer-events: none;
   opacity: 0;
