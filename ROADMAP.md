@@ -35,6 +35,7 @@ Goal: make the app clearly useful as a daily reflection tool.
 
 Goal: make APIs easier to test and extend.
 
+- Follow the backend checklist in [BACKEND_READINESS.md](BACKEND_READINESS.md).
 - Split app creation from server startup.
 - Add tests for validators, token generation, and core routes.
 - Remove startup debug logs.

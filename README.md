@@ -32,6 +32,7 @@ OpenLife is useful for productivity users, students, beginner contributors, Reac
 | [Contributor onboarding](CONTRIBUTOR_ONBOARDING.md) | Start your first contribution |
 | [Good first issues](GOOD_FIRST_ISSUES.md) | Find beginner-friendly work |
 | [Roadmap](ROADMAP.md) | See planned project direction |
+| [Backend readiness](BACKEND_READINESS.md) | Understand backend production gaps |
 | [Maintainer review](MAINTAINER_REVIEW.md) | Current maintainer assessment |
 | [Contributing guide](CONTRIBUTING.md) | Contribution rules and setup |
 | [Security policy](SECURITY.md) | Report vulnerabilities |
