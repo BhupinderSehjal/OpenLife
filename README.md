@@ -1,60 +1,71 @@
 # OpenLife
 
-OpenLife is an open-source productivity, time-tracking, habit reflection, and workflow analysis platform for people who want to understand how they spend their day and improve it through small, consistent changes.
+OpenLife is an open-source productivity, time tracking, habit reflection, and workflow analysis platform. It helps people understand where their time goes, reflect on daily habits, and improve their workflow through small, consistent changes.
 
 [![CI](https://github.com/BhupinderSehjal/OpenLife/actions/workflows/ci.yml/badge.svg)](https://github.com/BhupinderSehjal/OpenLife/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Good first issues](https://img.shields.io/github/issues/BhupinderSehjal/OpenLife/good%20first%20issue?label=good%20first%20issues)](https://github.com/BhupinderSehjal/OpenLife/labels/good%20first%20issue)
 [![Contributors welcome](https://img.shields.io/badge/contributors-welcome-blue.svg)](CONTRIBUTOR_ONBOARDING.md)
 
-Live demo: [openlife-nine.vercel.app](https://openlife-nine.vercel.app)
+Live frontend: [openlife-nine.vercel.app](https://openlife-nine.vercel.app)
 
-## What OpenLife Does
+## Why OpenLife
 
-Most productivity tools focus only on completed tasks. OpenLife focuses on daily reflection:
+Most productivity apps answer: "What did you complete?"
 
-- Track tasks and daily workflow.
-- Understand where time goes.
-- Reflect on habits and productivity patterns.
-- Build a beginner-friendly open-source product in public.
+OpenLife asks better daily questions:
 
-OpenLife is useful for productivity users, students, beginner contributors, React developers, backend developers, and anyone learning open-source collaboration.
+- Where did your time actually go?
+- What patterns repeat in your workflow?
+- Which habits help or hurt your focus?
+- What small change would make tomorrow better?
 
-## Keywords
+The project is also built as a beginner-friendly open-source learning space for contributors working with React, Node.js, ASP.NET Core, APIs, documentation, testing, and project maintenance.
 
-`open-source productivity app`, `time tracking`, `habit tracker`, `workflow analysis`, `daily reflection`, `React`, `Vite`, `Node.js`, `Express`, `MongoDB`, `beginner friendly open source`, `good first issue`
+## Project Status
+
+| Area | Status | Notes |
+| --- | --- | --- |
+| Frontend | Live | Deployed on Vercel |
+| Node backend | In progress | Express/Mongoose API exists but is not deployed yet |
+| ASP.NET Core backend | Starter added | Additional backend in `backend-dotnet/` for C# contributors |
+| Tests | Basic | Frontend lint/build, Node test command, ASP.NET smoke tests |
+| Production readiness | In progress | See `BACKEND_READINESS.md` and open issues |
 
 ## Quick Links
 
 | Link | Purpose |
 | --- | --- |
-| [Live demo](https://openlife-nine.vercel.app) | Try the app |
-| [Contributor onboarding](CONTRIBUTOR_ONBOARDING.md) | Start your first contribution |
-| [Good first issues](GOOD_FIRST_ISSUES.md) | Find beginner-friendly work |
-| [Roadmap](ROADMAP.md) | See planned project direction |
-| [Backend readiness](BACKEND_READINESS.md) | Understand backend production gaps |
-| [Maintainer review](MAINTAINER_REVIEW.md) | Current maintainer assessment |
-| [Contributing guide](CONTRIBUTING.md) | Contribution rules and setup |
+| [Live demo](https://openlife-nine.vercel.app) | Try the current frontend |
+| [Contributor onboarding](CONTRIBUTOR_ONBOARDING.md) | First steps for new contributors |
+| [Good first issues](GOOD_FIRST_ISSUES.md) | Beginner-friendly work |
+| [Roadmap](ROADMAP.md) | Maintainer and product direction |
+| [Backend readiness](BACKEND_READINESS.md) | Backend gaps and production checklist |
+| [ASP.NET backend](backend-dotnet/README.md) | C#/.NET backend starter |
+| [Maintainer review](MAINTAINER_REVIEW.md) | Current repo assessment |
+| [Repo SEO checklist](REPO_SEO_CHECKLIST.md) | GitHub topics and visibility checklist |
 | [Security policy](SECURITY.md) | Report vulnerabilities |
 
 ## Features
 
-Current and in-progress:
+Current and in progress:
 
 - Task management UI and backend API work.
 - Daily time usage tracking UI.
 - Dashboard and reflection-oriented UI components.
 - Static chatbot/help UI components.
-- Beginner-friendly contribution flow.
-- Express/Mongoose backend structure.
+- Node/Express backend with users, auth, tasks, JWT middleware, and Swagger wiring.
+- ASP.NET Core backend starter with health/info/task endpoints and tests.
+- Beginner-friendly contribution flow, issue templates, PR template, and roadmap docs.
 
 Planned:
 
 - Learning goals and reminders.
-- Daily and weekly workflow analytics.
+- Daily and weekly workflow analysis.
 - Habit and goal improvement cycles.
-- More complete API documentation and route tests.
-- Better onboarding for first-time contributors.
+- Backend deployment.
+- More route tests, API examples, and production hardening.
+- Screenshots and stronger product documentation.
 
 ## Tech Stack
 
@@ -65,7 +76,7 @@ Frontend:
 - Tailwind CSS
 - React Router
 
-Backend:
+Node backend:
 
 - Node.js
 - Express
@@ -73,13 +84,34 @@ Backend:
 - Mongoose
 - JWT authentication
 - Swagger docs
-- Optional ASP.NET Core backend starter in [`backend-dotnet/`](backend-dotnet/README.md)
+
+ASP.NET Core backend:
+
+- ASP.NET Core
+- Minimal APIs
+- OpenAPI
+- xUnit smoke tests
+- In-memory task store for starter contribution work
 
 Tooling:
 
 - GitHub Actions CI
 - Dependabot
 - GitHub Issues and Pull Requests
+- MIT license
+
+## Repository Structure
+
+```text
+OpenLife/
+  frontend/             React + Vite app
+  backend/              Node + Express backend
+  backend-dotnet/       ASP.NET Core backend starter
+  .github/              Workflows, templates, CODEOWNERS, Dependabot
+  README.md             Project overview
+  ROADMAP.md            Project direction
+  BACKEND_READINESS.md  Backend production-readiness guide
+```
 
 ## Local Setup
 
@@ -90,7 +122,7 @@ git clone https://github.com/BhupinderSehjal/OpenLife.git
 cd OpenLife
 ```
 
-Run the frontend:
+### Frontend
 
 ```bash
 cd frontend
@@ -100,7 +132,7 @@ npm run dev
 
 Open `http://localhost:5173`.
 
-Run the backend:
+### Node Backend
 
 ```bash
 cd backend
@@ -119,7 +151,20 @@ JWT_SECRET=replace-with-a-local-secret
 JWT_ACCESS_EXPIRATION_TTL=3600
 ```
 
-## Checks
+### ASP.NET Core Backend
+
+```bash
+cd backend-dotnet/OpenLife.Api
+dotnet run
+```
+
+Run ASP.NET tests:
+
+```bash
+dotnet test backend-dotnet/OpenLife.DotNet.slnx
+```
+
+## Checks Before Pull Request
 
 Frontend:
 
@@ -129,29 +174,81 @@ npm run lint
 npm run build
 ```
 
-Backend:
+Node backend:
 
 ```bash
 cd backend
 npm test
 ```
 
-## Contributing
+ASP.NET Core backend:
+
+```bash
+dotnet test backend-dotnet/OpenLife.DotNet.slnx
+```
+
+## New Contributors
 
 New contributors are welcome. The best first pull request is small, focused, and easy to review.
 
 Start here:
 
 1. Read [CONTRIBUTOR_ONBOARDING.md](CONTRIBUTOR_ONBOARDING.md).
-2. Pick an issue from [GOOD_FIRST_ISSUES.md](GOOD_FIRST_ISSUES.md) or the `good first issue` label.
+2. Pick an issue from [GOOD_FIRST_ISSUES.md](GOOD_FIRST_ISSUES.md) or the [`good first issue`](https://github.com/BhupinderSehjal/OpenLife/labels/good%20first%20issue) label.
 3. Comment on the issue before starting.
-4. Open a focused pull request with a clear summary and screenshots for UI changes.
+4. Keep the pull request focused on one change.
+5. Include what changed, why it matters, and how you tested it.
 
-Maintainers should merge relevant PRs when the change is focused, useful, and checks pass.
+Good beginner areas:
 
-## Repository SEO Checklist
+- Documentation improvements.
+- Empty states and accessibility improvements.
+- Small frontend UI fixes.
+- API examples.
+- Backend smoke tests.
+- ASP.NET Core starter endpoints.
 
-Maintainers can use [REPO_SEO_CHECKLIST.md](REPO_SEO_CHECKLIST.md) to configure GitHub topics, description, pinned issues, and social preview settings.
+## Maintainer Notes
+
+Maintainers should prioritize:
+
+- Keeping `main` green.
+- Reviewing small PRs quickly.
+- Labeling issues clearly.
+- Closing or updating completed issues.
+- Keeping beginner issues genuinely beginner-friendly.
+- Avoiding large rewrites unless they are broken into planned tasks.
+
+Suggested merge message for good PRs:
+
+> Thanks for the focused contribution. This is relevant, small, and checks pass, so I am merging it.
+
+## Troubleshooting
+
+`npm ci` fails:
+
+- Make sure you are inside `frontend/` or `backend/`.
+- Delete `node_modules` and rerun `npm ci`.
+- Use the committed lockfile instead of running random package updates.
+
+Backend cannot connect to MongoDB:
+
+- Confirm MongoDB is running.
+- Confirm `DATABASE_URL` and `DATABASE_NAME` exist in `backend/.env.development`.
+
+Port already in use:
+
+- Change `PORT` in the backend env file.
+- For Vite, run `npm run dev -- --port 5174`.
+
+.NET command not found:
+
+- Install the .NET SDK.
+- Run `dotnet --info` to confirm it is available.
+
+## SEO Keywords
+
+`open-source productivity app`, `time tracking`, `habit tracker`, `daily reflection`, `workflow analysis`, `React`, `Vite`, `Node.js`, `Express`, `MongoDB`, `ASP.NET Core`, `C#`, `beginner-friendly open source`, `good first issue`
 
 ## Community
 
