@@ -2,20 +2,20 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "This is a ultimate Tracker for OpenLife.",
-  "homepage": "https://github.com/0bit-0/OpenLife#readme",
+  "homepage": "https://github.com/BhupinderSehjal/OpenLife#readme",
   "bugs": {
-    "url": "https://github.com/0bit-0/OpenLife/issues"
+    "url": "https://github.com/BhupinderSehjal/OpenLife/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/0bit-0/OpenLife.git"
+    "url": "git+https://github.com/BhupinderSehjal/OpenLife.git"
   },
   "license": "MIT",
   "author": "Team7",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --test",
     "dev": "cross-env NODE_ENV=development nodemon src/index.js",
     "staging": "cross-env NODE_ENV=staging nodemon src/index.js",
     "start": "cross-env NODE_ENV=production nodemon src/index.js"

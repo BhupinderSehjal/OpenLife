@@ -90,9 +90,22 @@ cd OpenLife
 
 ```bash
 cd frontend
-npm install
+npm ci
 npm run dev
 ```
+
+---
+
+### 4️⃣ Install Dependencies (Backend)
+
+```bash
+cd backend
+npm ci
+cp .env.example .env.development
+npm run dev
+```
+
+Use a local MongoDB instance and set the required environment variables in `backend/.env.development`.
 
 ---
 
@@ -201,6 +214,8 @@ Use clear and meaningful messages:
 Before submitting a PR:
 
 * Ensure the app runs without errors
+* Run `npm run lint` and `npm run build` from `frontend` for UI changes
+* Run `npm test` from `backend` for API changes
 * Keep PRs **small**
 * One feature or fix per PR
 * Be respectful in discussions

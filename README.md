@@ -83,6 +83,8 @@ Every feature is designed to help users make **small, meaningful improvements**.
 ### Frontend
 
 * React
+* Vite
+* Tailwind CSS
 * Modern component-based architecture
 * Clean, extensible UI
 
@@ -94,14 +96,58 @@ Every feature is designed to help users make **small, meaningful improvements**.
 
 ### Database
 
-* Planned (schema designed for time & workflow data)
+* MongoDB with Mongoose
 
 ### Tooling & Collaboration
 
 * Git & GitHub
 * Issues, Discussions, Pull Requests
-* GitHub Actions for automation
-* Wiki-based documentation
+* GitHub Actions for CI and automation
+* Dependabot for dependency updates
+
+---
+
+## Local Setup
+
+### Frontend
+
+```bash
+cd frontend
+npm ci
+npm run dev
+```
+
+Open `http://localhost:5173`.
+
+### Backend
+
+```bash
+cd backend
+npm ci
+cp .env.example .env.development
+npm run dev
+```
+
+Create `backend/.env.development` with:
+
+```env
+PORT=3001
+DATABASE_URL=mongodb://localhost:27017
+DATABASE_NAME=openlife
+JWT_SECRET=replace-with-a-local-secret
+JWT_ACCESS_EXPIRATION_TTL=3600
+```
+
+### Checks
+
+```bash
+cd frontend
+npm run lint
+npm run build
+
+cd ../backend
+npm test
+```
 
 ---
 
@@ -143,6 +189,8 @@ We welcome all kinds of contributions:
 5. 🔧 Submit a Pull Request
 
 📘 Please read **`CONTRIBUTING.md`** before submitting a PR.
+
+New contributors can start with **[CONTRIBUTOR_ONBOARDING.md](CONTRIBUTOR_ONBOARDING.md)** for a short first-PR path.
 
 ---
 

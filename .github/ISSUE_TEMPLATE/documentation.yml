@@ -1,0 +1,18 @@
+name: Documentation
+description: Report missing, confusing, or outdated docs.
+title: "[Docs]: "
+labels: ["documentation", "needs-triage"]
+body:
+  - type: textarea
+    id: doc_problem
+    attributes:
+      label: What should be improved?
+      description: Link the page or file and explain what is unclear or missing.
+    validations:
+      required: true
+  - type: textarea
+    id: suggested_change
+    attributes:
+      label: Suggested change
+    validations:
+      required: false

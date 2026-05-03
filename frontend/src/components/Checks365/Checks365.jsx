@@ -12,7 +12,7 @@ const Checks365 = () => {
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 1000)
     return () => clearInterval(id)
-  }, [messagesArray])
+  }, [])
 
   const dateTimeFormatter = useMemo(
     () =>
