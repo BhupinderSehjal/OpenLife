@@ -73,6 +73,7 @@ Backend:
 - Mongoose
 - JWT authentication
 - Swagger docs
+- Optional ASP.NET Core backend starter in [`backend-dotnet/`](backend-dotnet/README.md)
 
 Tooling:
 

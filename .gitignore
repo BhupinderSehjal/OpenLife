@@ -34,6 +34,8 @@ dist-ssr
 .turbo
 coverage
 .nyc_output
+bin/
+obj/
 
 # Editor directories and files
 .vscode/*

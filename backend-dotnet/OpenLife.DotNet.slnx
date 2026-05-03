@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="OpenLife.Api.Tests/OpenLife.Api.Tests.csproj" />
+  <Project Path="OpenLife.Api/OpenLife.Api.csproj" />
+</Solution>

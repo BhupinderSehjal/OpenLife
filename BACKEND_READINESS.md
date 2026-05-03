@@ -17,6 +17,8 @@ The backend currently includes:
 
 This is a useful foundation, but it is not production-ready yet.
 
+There is also an additional ASP.NET Core backend starter in [`backend-dotnet/`](backend-dotnet/README.md). It is intentionally separate from the Node backend so C#/.NET contributors can help without replacing the current API.
+
 ## Production-Ready Definition
 
 The backend should not be considered production-ready until:

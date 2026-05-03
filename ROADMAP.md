@@ -41,6 +41,7 @@ Goal: make APIs easier to test and extend.
 - Remove startup debug logs.
 - Improve Swagger examples.
 - Add consistent API error responses.
+- Grow the optional ASP.NET Core backend in `backend-dotnet/` through small, tested PRs.
 
 ## Phase 5: Learning Goals and Reminders
 
