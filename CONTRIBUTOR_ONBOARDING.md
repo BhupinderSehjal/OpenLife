@@ -2,6 +2,17 @@
 
 Welcome to OpenLife. The best first contribution is small, focused, and easy to review.
 
+## New Contributor Path
+
+Use this path if you are new to open source:
+
+1. Open [GOOD_FIRST_ISSUES.md](GOOD_FIRST_ISSUES.md).
+2. Choose one task that matches your skill level.
+3. Comment on the related issue before starting.
+4. Make one focused change.
+5. Run the relevant checks.
+6. Open a pull request and explain what changed.
+
 ## Start Here
 
 1. Read `README.md` and `CONTRIBUTING.md`.
@@ -17,6 +28,25 @@ Welcome to OpenLife. The best first contribution is small, focused, and easy to 
 - Add a small loading, empty, or error state.
 - Add a focused backend test for one helper or validator.
 - Improve API examples in docs.
+
+## Before Opening a PR
+
+For frontend changes:
+
+```bash
+cd frontend
+npm run lint
+npm run build
+```
+
+For backend changes:
+
+```bash
+cd backend
+npm test
+```
+
+For documentation-only changes, explain what file changed and why.
 
 ## Maintainer Review Promise
 

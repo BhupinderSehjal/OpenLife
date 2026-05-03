@@ -1,115 +1,94 @@
-# 🌱 OpenLife
+# OpenLife
 
-**OpenLife** is an open-source, community-driven productivity and reflection platform designed to help individuals **understand, analyze, and improve how they spend their time every day**.
+OpenLife is an open-source productivity, time-tracking, habit reflection, and workflow analysis platform for people who want to understand how they spend their day and improve it through small, consistent changes.
 
-Instead of focusing only on task completion, OpenLife emphasizes **time awareness, workflow clarity, habit reflection, and continuous self-improvement** — all built in the open, by the community.
+[![CI](https://github.com/BhupinderSehjal/OpenLife/actions/workflows/ci.yml/badge.svg)](https://github.com/BhupinderSehjal/OpenLife/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Good first issues](https://img.shields.io/github/issues/BhupinderSehjal/OpenLife/good%20first%20issue?label=good%20first%20issues)](https://github.com/BhupinderSehjal/OpenLife/labels/good%20first%20issue)
+[![Contributors welcome](https://img.shields.io/badge/contributors-welcome-blue.svg)](CONTRIBUTOR_ONBOARDING.md)
 
-🔗 **Live Preview:**
-👉 [https://openlife-nine.vercel.app](https://openlife-nine.vercel.app)
+Live demo: [openlife-nine.vercel.app](https://openlife-nine.vercel.app)
 
----
+## What OpenLife Does
 
-## 🧠 Why OpenLife?
+Most productivity tools focus only on completed tasks. OpenLife focuses on daily reflection:
 
-Most productivity tools answer:
+- Track tasks and daily workflow.
+- Understand where time goes.
+- Reflect on habits and productivity patterns.
+- Build a beginner-friendly open-source product in public.
 
-> *“What tasks did you complete?”*
+OpenLife is useful for productivity users, students, beginner contributors, React developers, backend developers, and anyone learning open-source collaboration.
 
-OpenLife asks deeper questions:
+## Keywords
 
-* ⏳ Where did your time actually go today?
-* 🔍 What patterns repeat in your daily workflow?
-* 🚫 Where are productivity leaks happening?
-* 🔁 What small habits can be improved consistently?
+`open-source productivity app`, `time tracking`, `habit tracker`, `workflow analysis`, `daily reflection`, `React`, `Vite`, `Node.js`, `Express`, `MongoDB`, `beginner friendly open source`, `good first issue`
 
-OpenLife helps users **reflect first**, then improve — one day at a time.
+## Quick Links
 
----
+| Link | Purpose |
+| --- | --- |
+| [Live demo](https://openlife-nine.vercel.app) | Try the app |
+| [Contributor onboarding](CONTRIBUTOR_ONBOARDING.md) | Start your first contribution |
+| [Good first issues](GOOD_FIRST_ISSUES.md) | Find beginner-friendly work |
+| [Roadmap](ROADMAP.md) | See planned project direction |
+| [Maintainer review](MAINTAINER_REVIEW.md) | Current maintainer assessment |
+| [Contributing guide](CONTRIBUTING.md) | Contribution rules and setup |
+| [Security policy](SECURITY.md) | Report vulnerabilities |
 
-## 🎯 Vision
+## Features
 
-To build a **free, open-source, and community-powered productivity platform** that:
+Current and in-progress:
 
-* Grows with contributors
-* Encourages mindful productivity
-* Supports beginners in open-source
-* Solves real-life workflow problems
-* Promotes learning by building
+- Task management UI and backend API work.
+- Daily time usage tracking UI.
+- Dashboard and reflection-oriented UI components.
+- Static chatbot/help UI components.
+- Beginner-friendly contribution flow.
+- Express/Mongoose backend structure.
 
-OpenLife is not just a product — it’s a **learning ecosystem**.
+Planned:
 
----
+- Learning goals and reminders.
+- Daily and weekly workflow analytics.
+- Habit and goal improvement cycles.
+- More complete API documentation and route tests.
+- Better onboarding for first-time contributors.
 
-## ✨ Core Features (Current & Planned)
+## Tech Stack
 
-### ✅ Current / In Progress
+Frontend:
 
-* Task management
-* Habit tracking
-* Notes & daily records
-* Clean and simple UI
-* Open-source contribution flow
+- React
+- Vite
+- Tailwind CSS
+- React Router
 
-### 🚧 Planned Features
+Backend:
 
-* ⏱️ Time usage tracking
-* 📊 Daily & weekly workflow analysis
-* 🧠 Reflection-based insights
-* 📆 Productivity patterns & trends
-* 🔌 API-driven backend
-* 🗄️ Structured database design
-* 🎯 Goal & habit improvement cycles
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- JWT authentication
+- Swagger docs
 
-> Feature ideas are openly discussed and community-driven.
+Tooling:
 
----
-
-## 🧩 Project Philosophy
-
-OpenLife is built around these principles:
-
-* **Reflection over pressure**
-* **Clarity over complexity**
-* **Consistency over intensity**
-* **Learning over perfection**
-* **Community over isolation**
-
-Every feature is designed to help users make **small, meaningful improvements**.
-
----
-
-## 🛠 Tech Stack
-
-### Frontend
-
-* React
-* Vite
-* Tailwind CSS
-* Modern component-based architecture
-* Clean, extensible UI
-
-### Backend
-
-* Node.js
-* Express.js
-* RESTful API design
-
-### Database
-
-* MongoDB with Mongoose
-
-### Tooling & Collaboration
-
-* Git & GitHub
-* Issues, Discussions, Pull Requests
-* GitHub Actions for CI and automation
-* Dependabot for dependency updates
-
----
+- GitHub Actions CI
+- Dependabot
+- GitHub Issues and Pull Requests
 
 ## Local Setup
 
-### Frontend
+Clone the repository:
+
+```bash
+git clone https://github.com/BhupinderSehjal/OpenLife.git
+cd OpenLife
+```
+
+Run the frontend:
 
 ```bash
 cd frontend
@@ -119,7 +98,7 @@ npm run dev
 
 Open `http://localhost:5173`.
 
-### Backend
+Run the backend:
 
 ```bash
 cd backend
@@ -138,104 +117,46 @@ JWT_SECRET=replace-with-a-local-secret
 JWT_ACCESS_EXPIRATION_TTL=3600
 ```
 
-### Checks
+## Checks
+
+Frontend:
 
 ```bash
 cd frontend
 npm run lint
 npm run build
+```
 
-cd ../backend
+Backend:
+
+```bash
+cd backend
 npm test
 ```
 
----
+## Contributing
 
-## 🌍 Who Is OpenLife For?
+New contributors are welcome. The best first pull request is small, focused, and easy to review.
 
-OpenLife is perfect if you are:
+Start here:
 
-* 🌱 Learning **frontend or backend development**
-* 🚀 New to **open-source contributions**
-* 🧠 Interested in **productivity, habits, or time management**
-* 🔍 Looking for a **real-world learning project**
-* 🤝 Wanting to collaborate in a supportive community
+1. Read [CONTRIBUTOR_ONBOARDING.md](CONTRIBUTOR_ONBOARDING.md).
+2. Pick an issue from [GOOD_FIRST_ISSUES.md](GOOD_FIRST_ISSUES.md) or the `good first issue` label.
+3. Comment on the issue before starting.
+4. Open a focused pull request with a clear summary and screenshots for UI changes.
 
-Beginners are **strongly encouraged** to contribute.
+Maintainers should merge relevant PRs when the change is focused, useful, and checks pass.
 
----
+## Repository SEO Checklist
 
-## 🤝 Contributing to OpenLife
+Maintainers can use [REPO_SEO_CHECKLIST.md](REPO_SEO_CHECKLIST.md) to configure GitHub topics, description, pinned issues, and social preview settings.
 
-We welcome all kinds of contributions:
+## Community
 
-* 💡 Feature ideas
-* 🐛 Bug reports
-* 📚 Documentation improvements
-* 🎨 UI/UX enhancements
-* ⚙️ Backend & frontend code
-* 🧪 Testing and reviews
+OpenLife values respectful communication, beginner-friendly reviews, practical improvements, and learning in public.
 
-### How to Contribute
+Please follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
-1. ⭐ Star the repository
-2. 🍴 Fork the project
-3. 💬 Join Discussions for ideas
-4. 🏷️ Look for labels like:
+## License
 
-   * `good-first-issue`
-   * `help-wanted`
-   * `ready-for-pr`
-5. 🔧 Submit a Pull Request
-
-📘 Please read **`CONTRIBUTING.md`** before submitting a PR.
-
-New contributors can start with **[CONTRIBUTOR_ONBOARDING.md](CONTRIBUTOR_ONBOARDING.md)** for a short first-PR path.
-
----
-
-## 📚 Documentation
-
-* 📖 Wiki (Project overview, architecture, guides)
-* 💬 Discussions (Ideas & planning)
-* 🧭 Contribution guides
-* 🛠 Architecture & API documentation (growing)
-
-Documentation improves continuously with the project.
-
----
-
-## 🧑‍🤝‍🧑 Community & Values
-
-OpenLife believes in:
-
-* Respectful communication
-* Inclusive collaboration
-* Beginner-friendly guidance
-* Open knowledge sharing
-* Building together
-
-We grow by **helping each other learn**.
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**.
-You are free to use, modify, and distribute it.
-
----
-
-## 💙 Final Note
-
-OpenLife exists because of contributors like you.
-
-Whether you:
-
-* Fix a typo
-* Suggest an idea
-* Improve documentation
-* Add a feature
-* Or open your first PR
-
-You are making OpenLife better 🌱
+OpenLife is released under the [MIT License](LICENSE).
