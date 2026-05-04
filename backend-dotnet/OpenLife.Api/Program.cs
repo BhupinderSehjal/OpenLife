@@ -62,14 +62,55 @@ tasks.MapGet("/{id:guid}", (Guid id, TaskStore store) =>
 tasks.MapPost("/", (CreateTaskRequest request, TaskStore store) =>
 {
     var validationError = ValidateCreateTask(request);
-    if (validationError is not null)
-    {
-        return Results.BadRequest(new ErrorResponse(validationError));
-    }
+if (validationError is not null)
+{
+    return Results.BadRequest(new ErrorResponse(validationError));
+}
 
     var task = store.Create(request);
     return Results.Created($"/api/tasks/{task.Id}", task);
 });
+
+tasks.MapPatch("/{id:guid}", (Guid id, CreateTaskRequest request, TaskStore store) =>
+{
+    var existingTask = store.Get(id);
+
+    if (existingTask is null)
+    {
+        return Results.NotFound(new ErrorResponse("Task not found."));
+    }
+
+    var updatedTask = new TaskResponse(
+        id,
+        request.Title.Trim(),
+        request.Description.Trim(),
+        existingTask.Status,
+        request.Priority,
+        request.Period,
+        request.DueDate,
+        existingTask.CreatedAtUtc
+    );
+
+    store.Update(id, updatedTask);
+
+    return Results.Ok(updatedTask);
+});
+
+tasks.MapDelete("/{id:guid}", (Guid id, TaskStore store) =>
+{
+    var existingTask = store.Get(id);
+
+    if (existingTask is null)
+    {
+        return Results.NotFound(new ErrorResponse("Task not found."));
+    }
+
+    store.Delete(id);
+
+    return Results.Ok();
+});
+
+
 
 app.Run();
 
@@ -116,6 +157,15 @@ internal static class AllowedValues
 
 internal sealed class TaskStore
 {
+    public void Update(Guid id, TaskResponse task)
+{
+    _tasks[id] = task;
+}
+
+public void Delete(Guid id)
+{
+    _tasks.TryRemove(id, out _);
+}
     private readonly ConcurrentDictionary<Guid, TaskResponse> _tasks = new();
 
     public IReadOnlyCollection<TaskResponse> GetAll()

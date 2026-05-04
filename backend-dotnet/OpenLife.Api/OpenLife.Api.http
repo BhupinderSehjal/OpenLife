@@ -1,6 +1,23 @@
-@OpenLife.Api_HostAddress = http://localhost:5026
+POST http://localhost:5026/api/tasks/
+Content-Type: application/json
 
-GET {{OpenLife.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+{
+  "title": "My Task",
+  "description": "Testing",
+  "priority": "normal",
+  "period": "daily",
+  "dueDate": "2026-05-10T00:00:00Z"
+}
 
 ###
+
+PATCH http://localhost:5026/api/tasks/8de5fddf-ff9a-46a0-9a52-c469163dd9c0
+Content-Type: application/json
+
+{
+  "title": "Updated Task",
+  "description": "Updated description",
+  "priority": "high",
+  "period": "weekly",
+  "dueDate": "2026-05-12T00:00:00Z"
+}
