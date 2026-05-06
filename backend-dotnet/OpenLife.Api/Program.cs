@@ -80,6 +80,13 @@ tasks.MapPatch("/{id:guid}", (Guid id, CreateTaskRequest request, TaskStore stor
         return Results.NotFound(new ErrorResponse("Task not found."));
     }
 
+    var validationError = ValidateCreateTask(request);
+
+    if (validationError is not null)
+    {
+        return Results.BadRequest(new ErrorResponse(validationError));
+    }
+    
     var updatedTask = new TaskResponse(
         id,
         request.Title.Trim(),

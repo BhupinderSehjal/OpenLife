@@ -106,6 +106,59 @@ public async Task Task_endpoint_updates_task_successfully()
 }
 
 [Fact]
+    public async Task Task_endpoint_update_rejects_empty_title()
+    {
+        var request = new CreateTaskRequest(
+            "Valid Title",
+            "Valid Description",
+            "normal",
+            "daily",
+            DateTimeOffset.UtcNow.AddDays(1));
+
+        var createResponse = await _client.PostAsJsonAsync("/api/tasks", request);
+        var created = await createResponse.Content.ReadFromJsonAsync<TaskResponse>();
+        Assert.NotNull(created);
+
+        var invalidUpdate = new CreateTaskRequest(
+            "",
+            "Updated Description",
+            "normal",
+            "daily",
+            DateTimeOffset.UtcNow.AddDays(1));
+
+        var response = await _client.PatchAsJsonAsync($"/api/tasks/{created.Id}", invalidUpdate);
+
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task Task_endpoint_update_rejects_invalid_priority()
+    {
+        var request = new CreateTaskRequest(
+            "Valid Title",
+            "Valid Description",
+            "normal",
+            "daily",
+            DateTimeOffset.UtcNow.AddDays(1));
+
+        var createResponse = await _client.PostAsJsonAsync("/api/tasks", request);
+        var created = await createResponse.Content.ReadFromJsonAsync<TaskResponse>();
+        Assert.NotNull(created);
+
+        var invalidUpdate = new CreateTaskRequest(
+            "Updated Title",
+            "Updated Description",
+            "wrong",
+            "daily",
+            DateTimeOffset.UtcNow.AddDays(1));
+
+        var response = await _client.PatchAsJsonAsync($"/api/tasks/{created.Id}", invalidUpdate);
+
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+    }
+
+
+[Fact]
 public async Task Task_endpoint_deletes_task_successfully()
 {
     var request = new CreateTaskRequest(
