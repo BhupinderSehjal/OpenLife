@@ -7,8 +7,10 @@ async function updateTaskProvider(req, res) {
   const validatedData = matchedData(req);
 
   try {
-    const task = await Task.findById(req.body["_id"]).exec();
-
+    const task = await Task.findOne({ _id: req.body["_id"], user: req.user.id }).exec();
+    if (!task) {
+      return res.status(StatusCodes.NOT_FOUND).json({ reason: "Task not found" });
+    }
     //  Update the task
     task.title = validatedData.title || task.title;
     task.description = validatedData.description || task.description;
