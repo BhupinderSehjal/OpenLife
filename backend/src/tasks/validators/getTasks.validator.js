@@ -9,18 +9,16 @@ const getTasksValidator = [
   query("page").customSanitizer((value) => {
     return value ? value : 1; // default skip/page is 1 if not provided
   }),
-  query("order", "order must be one of ['asc', 'dsc']")
+  query("order", "order must be one of ['asc', 'desc']")
     .optional()
-    .isIn(["asc", "dsc"]),
+    .isIn(["asc", "desc"]),
     query("order").customSanitizer((value) => {
     return value ? value : "asc"; // default order is asc if not provided
   }),
   query("period", "period must be one of ['daily', 'weekly', 'monthly', 'yearly']")
     .optional()
     .isIn(["daily", "monthly", "weekly", "yearly"]),
-    query("order").customSanitizer((value) => {
-    return value ? value : "daily"; // default order is asc if not provided
-  }),
+
 ];
 
 module.exports = getTasksValidator;
