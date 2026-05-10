@@ -76,6 +76,40 @@ Avoid these as first PRs:
 | Deployment | Add backend deployment guide and environment checklist |
 | Docs | Add API request and error response examples |
 
+## API Error Response Examples
+
+These are fake examples that match the current backend response style as closely as possible.
+
+Validation error (`400`):
+
+```json
+{
+  "errors": [
+    {
+      "msg": "Title is required",
+      "path": "title",
+      "location": "body"
+    }
+  ]
+}
+```
+
+Unauthorized request (`401`):
+
+```json
+{
+  "message": "No token, authorization denied"
+}
+```
+
+Not found route (`404`):
+
+```json
+{
+  "message": "Route not found"
+}
+```
+
 ## Maintainer Review Checklist
 
 Before merging backend PRs, check:
