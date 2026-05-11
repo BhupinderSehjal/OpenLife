@@ -12,6 +12,12 @@ async function loginProvider(req, res) {
      // Get the user from the database
     const user = await getUserByEmail(validatedData.email);
 
+    if (!user) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: "Please check your credentials." });
+    }
+
     // Compare password to hash
     const result = await bcrypt.compare(validatedData.password, user.password);
 
