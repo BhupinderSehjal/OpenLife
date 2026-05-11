@@ -59,7 +59,7 @@ async function getTasksProvider(req, res) {
       .limit(limit)
       .skip(skip)
       .sort({
-        createdAt: order === "asc" ? 1 : -1,
+        createdAt: order === "desc" ? -1 : 1,
       });
 
  
