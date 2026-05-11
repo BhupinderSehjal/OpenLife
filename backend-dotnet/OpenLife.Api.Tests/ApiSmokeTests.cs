@@ -41,7 +41,8 @@ public sealed class ApiSmokeTests : IClassFixture<WebApplicationFactory<Program>
             "Add a smoke test for the ASP.NET Core backend",
             "normal",
             "daily",
-            DateTimeOffset.UtcNow.AddDays(1));
+            DateTimeOffset.UtcNow.AddDays(1)
+        );
 
         var createResponse = await _client.PostAsJsonAsync("/api/tasks", request);
         Assert.Equal(HttpStatusCode.Created, createResponse.StatusCode);
@@ -65,7 +66,8 @@ public sealed class ApiSmokeTests : IClassFixture<WebApplicationFactory<Program>
             "Description",
             "normal",
             "daily",
-            DateTimeOffset.UtcNow.AddDays(1));
+            DateTimeOffset.UtcNow.AddDays(1)
+        );
 
         var response = await _client.PostAsJsonAsync("/api/tasks", request);
 
@@ -73,39 +75,44 @@ public sealed class ApiSmokeTests : IClassFixture<WebApplicationFactory<Program>
     }
 
     [Fact]
-public async Task Task_endpoint_updates_task_successfully()
-{
-    // Step 1: Create task
-    var request = new CreateTaskRequest(
-        "Test Task",
-        "Test Description",
-        "normal",
-        "daily",
-        DateTimeOffset.UtcNow.AddDays(1));
+    public async Task Task_endpoint_updates_task_successfully()
+    {
+        // Step 1: Create task
+        var request = new CreateTaskRequest(
+            "Test Task",
+            "Test Description",
+            "normal",
+            "daily",
+            DateTimeOffset.UtcNow.AddDays(1)
+        );
 
-    var createResponse = await _client.PostAsJsonAsync("/api/tasks", request);
-    var created = await createResponse.Content.ReadFromJsonAsync<TaskResponse>();
-    Assert.NotNull(created);
+        var createResponse = await _client.PostAsJsonAsync("/api/tasks", request);
+        var created = await createResponse.Content.ReadFromJsonAsync<TaskResponse>();
+        Assert.NotNull(created);
 
-    // Step 2: Update task
-    var updateRequest = new CreateTaskRequest(
-        "Updated Task",
-        "Updated Description",
-        "high",
-        "weekly",
-        DateTimeOffset.UtcNow.AddDays(2));
+        // Step 2: Update task
+        var updateRequest = new CreateTaskRequest(
+            "Updated Task",
+            "Updated Description",
+            "high",
+            "weekly",
+            DateTimeOffset.UtcNow.AddDays(2)
+        );
 
-    var updateResponse = await _client.PatchAsJsonAsync($"/api/tasks/{created.Id}", updateRequest);
+        var updateResponse = await _client.PatchAsJsonAsync(
+            $"/api/tasks/{created.Id}",
+            updateRequest
+        );
 
-    // Step 3: Check result
-    Assert.Equal(HttpStatusCode.OK, updateResponse.StatusCode);
+        // Step 3: Check result
+        Assert.Equal(HttpStatusCode.OK, updateResponse.StatusCode);
 
-    var updated = await updateResponse.Content.ReadFromJsonAsync<TaskResponse>();
-    Assert.NotNull(updated);
-    Assert.Equal("Updated Task", updated.Title);
-}
+        var updated = await updateResponse.Content.ReadFromJsonAsync<TaskResponse>();
+        Assert.NotNull(updated);
+        Assert.Equal("Updated Task", updated.Title);
+    }
 
-[Fact]
+    [Fact]
     public async Task Task_endpoint_update_rejects_empty_title()
     {
         var request = new CreateTaskRequest(
@@ -113,7 +120,8 @@ public async Task Task_endpoint_updates_task_successfully()
             "Valid Description",
             "normal",
             "daily",
-            DateTimeOffset.UtcNow.AddDays(1));
+            DateTimeOffset.UtcNow.AddDays(1)
+        );
 
         var createResponse = await _client.PostAsJsonAsync("/api/tasks", request);
         var created = await createResponse.Content.ReadFromJsonAsync<TaskResponse>();
@@ -124,7 +132,8 @@ public async Task Task_endpoint_updates_task_successfully()
             "Updated Description",
             "normal",
             "daily",
-            DateTimeOffset.UtcNow.AddDays(1));
+            DateTimeOffset.UtcNow.AddDays(1)
+        );
 
         var response = await _client.PatchAsJsonAsync($"/api/tasks/{created.Id}", invalidUpdate);
 
@@ -139,7 +148,8 @@ public async Task Task_endpoint_updates_task_successfully()
             "Valid Description",
             "normal",
             "daily",
-            DateTimeOffset.UtcNow.AddDays(1));
+            DateTimeOffset.UtcNow.AddDays(1)
+        );
 
         var createResponse = await _client.PostAsJsonAsync("/api/tasks", request);
         var created = await createResponse.Content.ReadFromJsonAsync<TaskResponse>();
@@ -150,37 +160,61 @@ public async Task Task_endpoint_updates_task_successfully()
             "Updated Description",
             "wrong",
             "daily",
-            DateTimeOffset.UtcNow.AddDays(1));
+            DateTimeOffset.UtcNow.AddDays(1)
+        );
 
         var response = await _client.PatchAsJsonAsync($"/api/tasks/{created.Id}", invalidUpdate);
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
 
+    [Fact]
+    public async Task Task_endpoint_deletes_task_successfully()
+    {
+        var request = new CreateTaskRequest(
+            "Test Task",
+            "Test Description",
+            "normal",
+            "daily",
+            DateTimeOffset.UtcNow.AddDays(1)
+        );
 
-[Fact]
-public async Task Task_endpoint_deletes_task_successfully()
-{
-    var request = new CreateTaskRequest(
-        "Test Task",
-        "Test Description",
-        "normal",
-        "daily",
-        DateTimeOffset.UtcNow.AddDays(1));
+        var createResponse = await _client.PostAsJsonAsync("/api/tasks", request);
+        var created = await createResponse.Content.ReadFromJsonAsync<TaskResponse>();
+        Assert.NotNull(created);
 
-    var createResponse = await _client.PostAsJsonAsync("/api/tasks", request);
-    var created = await createResponse.Content.ReadFromJsonAsync<TaskResponse>();
-    Assert.NotNull(created);
+        var deleteResponse = await _client.DeleteAsync($"/api/tasks/{created.Id}");
 
-    var deleteResponse = await _client.DeleteAsync($"/api/tasks/{created.Id}");
+        Assert.Equal(HttpStatusCode.OK, deleteResponse.StatusCode);
 
-    Assert.Equal(HttpStatusCode.OK, deleteResponse.StatusCode);
+        var getResponse = await _client.GetAsync($"/api/tasks/{created.Id}");
+        Assert.Equal(HttpStatusCode.NotFound, getResponse.StatusCode);
+    }
 
-    var getResponse = await _client.GetAsync($"/api/tasks/{created.Id}");
-    Assert.Equal(HttpStatusCode.NotFound, getResponse.StatusCode);
-}
-    private sealed record HealthResponse(string Status, string Service, DateTimeOffset TimestampUtc);
+    private sealed record HealthResponse(
+        string Status,
+        string Service,
+        DateTimeOffset TimestampUtc
+    );
+
     private sealed record InfoResponse(string Name, string Backend, string Status, string Purpose);
-    private sealed record CreateTaskRequest(string Title, string Description, string Priority, string Period, DateTimeOffset DueDate);
-    private sealed record TaskResponse(Guid Id, string Title, string Description, string Status, string Priority, string Period, DateTimeOffset DueDate, DateTimeOffset CreatedAtUtc);
+
+    private sealed record CreateTaskRequest(
+        string Title,
+        string Description,
+        string Priority,
+        string Period,
+        DateTimeOffset DueDate
+    );
+
+    private sealed record TaskResponse(
+        Guid Id,
+        string Title,
+        string Description,
+        string Status,
+        string Priority,
+        string Period,
+        DateTimeOffset DueDate,
+        DateTimeOffset CreatedAtUtc
+    );
 }

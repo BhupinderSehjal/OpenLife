@@ -8,25 +8,24 @@ builder.Services.AddOpenApi();
 builder.Services.AddSingleton<TaskStore>();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(CorsPolicy, policy =>
-    {
-        var configuredOrigins = builder.Configuration
-            .GetSection("Cors:AllowedOrigins")
-            .Get<string[]>();
+    options.AddPolicy(
+        CorsPolicy,
+        policy =>
+        {
+            var configuredOrigins = builder
+                .Configuration.GetSection("Cors:AllowedOrigins")
+                .Get<string[]>();
 
-        if (configuredOrigins is { Length: > 0 })
-        {
-            policy.WithOrigins(configuredOrigins)
-                .AllowAnyHeader()
-                .AllowAnyMethod();
+            if (configuredOrigins is { Length: > 0 })
+            {
+                policy.WithOrigins(configuredOrigins).AllowAnyHeader().AllowAnyMethod();
+            }
+            else
+            {
+                policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+            }
         }
-        else
-        {
-            policy.AllowAnyOrigin()
-                .AllowAnyHeader()
-                .AllowAnyMethod();
-        }
-    });
+    );
 });
 
 var app = builder.Build();
@@ -38,86 +37,100 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors(CorsPolicy);
 
-app.MapGet("/health", () => new HealthResponse(
-    "ok",
-    "OpenLife.Api",
-    DateTimeOffset.UtcNow));
+app.MapGet("/health", () => new HealthResponse("ok", "OpenLife.Api", DateTimeOffset.UtcNow));
 
-app.MapGet("/api/info", () => new InfoResponse(
-    "OpenLife",
-    "ASP.NET Core",
-    "starter",
-    "Additional backend API for OpenLife contributors and production-readiness work."));
+app.MapGet(
+    "/api/info",
+    () =>
+        new InfoResponse(
+            "OpenLife",
+            "ASP.NET Core",
+            "starter",
+            "Additional backend API for OpenLife contributors and production-readiness work."
+        )
+);
 
 var tasks = app.MapGroup("/api/tasks");
 
 tasks.MapGet("/", (TaskStore store) => Results.Ok(store.GetAll()));
 
-tasks.MapGet("/{id:guid}", (Guid id, TaskStore store) =>
-{
-    var task = store.Get(id);
-    return task is null ? Results.NotFound(new ErrorResponse("Task not found.")) : Results.Ok(task);
-});
-
-tasks.MapPost("/", (CreateTaskRequest request, TaskStore store) =>
-{
-    var validationError = ValidateCreateTask(request);
-if (validationError is not null)
-{
-    return Results.BadRequest(new ErrorResponse(validationError));
-}
-
-    var task = store.Create(request);
-    return Results.Created($"/api/tasks/{task.Id}", task);
-});
-
-tasks.MapPatch("/{id:guid}", (Guid id, CreateTaskRequest request, TaskStore store) =>
-{
-    var existingTask = store.Get(id);
-
-    if (existingTask is null)
+tasks.MapGet(
+    "/{id:guid}",
+    (Guid id, TaskStore store) =>
     {
-        return Results.NotFound(new ErrorResponse("Task not found."));
+        var task = store.Get(id);
+        return task is null
+            ? Results.NotFound(new ErrorResponse("Task not found."))
+            : Results.Ok(task);
     }
+);
 
-    var validationError = ValidateCreateTask(request);
-
-    if (validationError is not null)
+tasks.MapPost(
+    "/",
+    (CreateTaskRequest request, TaskStore store) =>
     {
-        return Results.BadRequest(new ErrorResponse(validationError));
+        var validationError = ValidateCreateTask(request);
+        if (validationError is not null)
+        {
+            return Results.BadRequest(new ErrorResponse(validationError));
+        }
+
+        var task = store.Create(request);
+        return Results.Created($"/api/tasks/{task.Id}", task);
     }
-    
-    var updatedTask = new TaskResponse(
-        id,
-        request.Title.Trim(),
-        request.Description.Trim(),
-        existingTask.Status,
-        request.Priority,
-        request.Period,
-        request.DueDate,
-        existingTask.CreatedAtUtc
-    );
+);
 
-    store.Update(id, updatedTask);
-
-    return Results.Ok(updatedTask);
-});
-
-tasks.MapDelete("/{id:guid}", (Guid id, TaskStore store) =>
-{
-    var existingTask = store.Get(id);
-
-    if (existingTask is null)
+tasks.MapPatch(
+    "/{id:guid}",
+    (Guid id, CreateTaskRequest request, TaskStore store) =>
     {
-        return Results.NotFound(new ErrorResponse("Task not found."));
+        var existingTask = store.Get(id);
+
+        if (existingTask is null)
+        {
+            return Results.NotFound(new ErrorResponse("Task not found."));
+        }
+
+        var validationError = ValidateCreateTask(request);
+
+        if (validationError is not null)
+        {
+            return Results.BadRequest(new ErrorResponse(validationError));
+        }
+
+        var updatedTask = new TaskResponse(
+            id,
+            request.Title.Trim(),
+            request.Description.Trim(),
+            existingTask.Status,
+            request.Priority,
+            request.Period,
+            request.DueDate,
+            existingTask.CreatedAtUtc
+        );
+
+        store.Update(id, updatedTask);
+
+        return Results.Ok(updatedTask);
     }
+);
 
-    store.Delete(id);
+tasks.MapDelete(
+    "/{id:guid}",
+    (Guid id, TaskStore store) =>
+    {
+        var existingTask = store.Get(id);
 
-    return Results.Ok();
-});
+        if (existingTask is null)
+        {
+            return Results.NotFound(new ErrorResponse("Task not found."));
+        }
 
+        store.Delete(id);
 
+        return Results.Ok();
+    }
+);
 
 app.Run();
 
@@ -165,21 +178,20 @@ internal static class AllowedValues
 internal sealed class TaskStore
 {
     public void Update(Guid id, TaskResponse task)
-{
-    _tasks[id] = task;
-}
+    {
+        _tasks[id] = task;
+    }
 
-public void Delete(Guid id)
-{
-    _tasks.TryRemove(id, out _);
-}
+    public void Delete(Guid id)
+    {
+        _tasks.TryRemove(id, out _);
+    }
+
     private readonly ConcurrentDictionary<Guid, TaskResponse> _tasks = new();
 
     public IReadOnlyCollection<TaskResponse> GetAll()
     {
-        return _tasks.Values
-            .OrderByDescending(task => task.CreatedAtUtc)
-            .ToArray();
+        return _tasks.Values.OrderByDescending(task => task.CreatedAtUtc).ToArray();
     }
 
     public TaskResponse? Get(Guid id)
@@ -197,7 +209,8 @@ public void Delete(Guid id)
             request.Priority,
             request.Period,
             request.DueDate,
-            DateTimeOffset.UtcNow);
+            DateTimeOffset.UtcNow
+        );
 
         _tasks[task.Id] = task;
         return task;
@@ -205,9 +218,28 @@ public void Delete(Guid id)
 }
 
 internal sealed record HealthResponse(string Status, string Service, DateTimeOffset TimestampUtc);
+
 internal sealed record InfoResponse(string Name, string Backend, string Status, string Purpose);
-internal sealed record CreateTaskRequest(string Title, string Description, string Priority, string Period, DateTimeOffset DueDate);
-internal sealed record TaskResponse(Guid Id, string Title, string Description, string Status, string Priority, string Period, DateTimeOffset DueDate, DateTimeOffset CreatedAtUtc);
+
+internal sealed record CreateTaskRequest(
+    string Title,
+    string Description,
+    string Priority,
+    string Period,
+    DateTimeOffset DueDate
+);
+
+internal sealed record TaskResponse(
+    Guid Id,
+    string Title,
+    string Description,
+    string Status,
+    string Priority,
+    string Period,
+    DateTimeOffset DueDate,
+    DateTimeOffset CreatedAtUtc
+);
+
 internal sealed record ErrorResponse(string Message);
 
 public partial class Program;
