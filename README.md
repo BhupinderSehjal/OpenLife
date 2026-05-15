@@ -151,6 +151,21 @@ JWT_SECRET=replace-with-a-local-secret
 JWT_ACCESS_EXPIRATION_TTL=3600
 ```
 
+#### Backend environment variables
+
+The Node backend loads environment variables from `.env.${NODE_ENV}`. If `NODE_ENV` is not set, it defaults to `development`, so local development uses `backend/.env.development`.
+
+| Variable | Purpose | Production notes |
+| --- | --- | --- |
+| `PORT` | Port used by the Express server. Defaults to `3001` if unset. | Let the hosting provider set this when it provides a port automatically. |
+| `DATABASE_URL` | MongoDB connection string used by Mongoose. | Use a production MongoDB connection string from your database provider. |
+| `DATABASE_NAME` | MongoDB database name passed to the connection. | Use the production database name for the deployed backend. |
+| `JWT_SECRET` | Secret used to sign and verify JWT access tokens. | Use a strong, unique value. Changing it invalidates existing tokens. |
+| `JWT_ACCESS_EXPIRATION_TTL` | Access token lifetime in seconds. `3600` means one hour. | Choose a TTL that matches the production security requirements. |
+| `NODE_ENV` | Selects the runtime environment and `.env.${NODE_ENV}` file name. | Set this to `production` for deployed backend runs. |
+
+Production secrets should be configured in the deployment provider's environment variable settings. Do not commit real `.env` files, database credentials, JWT secrets, tokens, or production connection strings.
+
 ### ASP.NET Core Backend
 
 ```bash
