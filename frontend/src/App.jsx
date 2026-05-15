@@ -2,8 +2,11 @@ import { Routes, Route } from 'react-router-dom'
 import BaseLayout from './layouts/BaseLayout'
 import Home from './pages/Home/Home'
 import About from './pages/About/About'
+import ApiLab from './pages/ApiLab/ApiLab'
 import Contribute from './pages/Contribute/Contribute'
 import Showcase from './pages/Showcase/Showcase'
+import Insights from './pages/Insights/Insights'
+import Planner from './pages/Planner/Planner'
 import TimeUsageTracker from './components/TimeUsageTracker/TimeUsageTracker'
 
 export default function App() {
@@ -30,6 +33,30 @@ export default function App() {
         element={
           <BaseLayout title="Contribute to OpenLife">
             <Contribute />
+          </BaseLayout>
+        }
+      />
+      <Route
+        path="/planner"
+        element={
+          <BaseLayout title="Daily Planner" subtitle="Plan focus blocks, routines, and recovery time">
+            <Planner />
+          </BaseLayout>
+        }
+      />
+      <Route
+        path="/insights"
+        element={
+          <BaseLayout title="Productivity Insights" subtitle="Review focus trends and daily balance">
+            <Insights />
+          </BaseLayout>
+        }
+      />
+      <Route
+        path="/api-lab"
+        element={
+          <BaseLayout title="API Lab" subtitle="Explore backend endpoints and expected responses">
+            <ApiLab />
           </BaseLayout>
         }
       />

@@ -24,6 +24,15 @@ export default function Header() {
           <NavLink className={({ isActive }) => `${linkClass} ${isActive ? 'text-emerald-200' : ''}`} to="/contribute">
             Contribute
           </NavLink>
+          <NavLink className={({ isActive }) => `${linkClass} ${isActive ? 'text-emerald-200' : ''}`} to="/planner">
+            Planner
+          </NavLink>
+          <NavLink className={({ isActive }) => `${linkClass} ${isActive ? 'text-emerald-200' : ''}`} to="/insights">
+            Insights
+          </NavLink>
+          <NavLink className={({ isActive }) => `${linkClass} ${isActive ? 'text-emerald-200' : ''}`} to="/api-lab">
+            API Lab
+          </NavLink>
           <NavLink className={({ isActive }) => `${linkClass} ${isActive ? 'text-emerald-200' : ''}`} to="/showcase">
             Showcase
           </NavLink>
