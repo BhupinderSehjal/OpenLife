@@ -33,6 +33,12 @@ export default function Header() {
           <NavLink className={({ isActive }) => `${linkClass} ${isActive ? 'text-emerald-200' : ''}`} to="/api-lab">
             API Lab
           </NavLink>
+          <NavLink
+            className={({ isActive }) => `${linkClass} ${isActive ? 'text-emerald-200' : ''}`}
+            to="/contributor-hub"
+          >
+            Hub
+          </NavLink>
           <NavLink className={({ isActive }) => `${linkClass} ${isActive ? 'text-emerald-200' : ''}`} to="/showcase">
             Showcase
           </NavLink>
@@ -50,8 +56,8 @@ export default function Header() {
           <Button to="/contribute" variant="secondary" className="hidden sm:inline-flex">
             Contribute
           </Button>
-          <Button to="/about" variant="primary">
-            Learn more
+          <Button to="/settings" variant="primary">
+            Settings
           </Button>
         </div>
       </div>

@@ -3,10 +3,12 @@ import BaseLayout from './layouts/BaseLayout'
 import Home from './pages/Home/Home'
 import About from './pages/About/About'
 import ApiLab from './pages/ApiLab/ApiLab'
+import ContributorHub from './pages/ContributorHub/ContributorHub'
 import Contribute from './pages/Contribute/Contribute'
 import Showcase from './pages/Showcase/Showcase'
 import Insights from './pages/Insights/Insights'
 import Planner from './pages/Planner/Planner'
+import Settings from './pages/Settings/Settings'
 import TimeUsageTracker from './components/TimeUsageTracker/TimeUsageTracker'
 
 export default function App() {
@@ -57,6 +59,22 @@ export default function App() {
         element={
           <BaseLayout title="API Lab" subtitle="Explore backend endpoints and expected responses">
             <ApiLab />
+          </BaseLayout>
+        }
+      />
+      <Route
+        path="/contributor-hub"
+        element={
+          <BaseLayout title="Contributor Hub" subtitle="Find scoped work and ship clean pull requests">
+            <ContributorHub />
+          </BaseLayout>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <BaseLayout title="Settings" subtitle="Tune OpenLife defaults for planning and focus">
+            <Settings />
           </BaseLayout>
         }
       />
