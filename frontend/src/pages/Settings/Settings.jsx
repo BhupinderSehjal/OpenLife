@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Bell, Clock, Database, Moon, Save, SlidersHorizontal, SunMedium, TimerReset } from 'lucide-react'
 import Button from '../../components/Button/Button'
 import GlassCard from '../../components/GlassCard/GlassCard'
+import { useTheme } from '../../hooks/useTheme'
 
 const durations = [25, 45, 60, 90]
 const themes = [
@@ -12,18 +13,18 @@ const themes = [
 
 export default function Settings() {
   const [focusDuration, setFocusDuration] = useState(45)
-  const [theme, setTheme] = useState('system')
   const [backendUrl, setBackendUrl] = useState('http://localhost:3001')
   const [dailyReminder, setDailyReminder] = useState(true)
   const [breakReminder, setBreakReminder] = useState(true)
+  const { preference: theme, resolvedTheme, setPreference: setTheme } = useTheme()
 
   const summary = useMemo(
     () => [
       { label: 'Focus default', value: `${focusDuration}m`, icon: <Clock className="h-5 w-5 text-emerald-200" /> },
-      { label: 'Theme', value: theme, icon: <Moon className="h-5 w-5 text-sky-200" /> },
+      { label: 'Theme', value: theme === 'system' ? `system (${resolvedTheme})` : theme, icon: <Moon className="h-5 w-5 text-sky-200" /> },
       { label: 'API target', value: backendUrl.replace(/^https?:\/\//, ''), icon: <Database className="h-5 w-5 text-amber-200" /> },
     ],
-    [backendUrl, focusDuration, theme],
+    [backendUrl, focusDuration, resolvedTheme, theme],
   )
 
   return (
@@ -40,8 +41,8 @@ export default function Settings() {
             </div>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-slate-200/85">
-            Settings are currently local UI state. This gives contributors a clear surface for localStorage persistence, backend URL
-            configuration, notification toggles, and future account preferences.
+            Theme preference is applied across the app and saved in this browser. The remaining settings are local UI state for future
+            contributor work around backend URL configuration, notification toggles, and account preferences.
           </p>
           <div className="mt-5 grid gap-3 sm:grid-cols-3">
             {summary.map((item) => (
@@ -105,6 +106,7 @@ export default function Settings() {
                 }`}
                 key={item.id}
                 onClick={() => setTheme(item.id)}
+                aria-pressed={theme === item.id}
                 type="button"
               >
                 {item.icon}
@@ -112,6 +114,9 @@ export default function Settings() {
               </button>
             ))}
           </div>
+          <p className="mt-4 text-sm text-slate-300">
+            Current applied theme: <span className="font-semibold text-white">{resolvedTheme}</span>
+          </p>
         </GlassCard>
 
         <GlassCard className="p-6">

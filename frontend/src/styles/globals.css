@@ -8,6 +8,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --page-gutter: clamp(16px, 3vw, 48px);
+  --app-bg: #05070c;
+  --app-text: #e9edf5;
+  --grid-line: rgba(255, 255, 255, 0.04);
+  --hover-grid-line: rgba(255, 255, 255, 0.09);
+}
+
+:root[data-theme='light'] {
+  color: #172033;
+  background-color: #f4f8fb;
+  --app-bg: #f4f8fb;
+  --app-text: #172033;
+  --grid-line: rgba(15, 23, 42, 0.05);
+  --hover-grid-line: rgba(15, 23, 42, 0.09);
 }
 
 *,
@@ -20,7 +33,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background: transparent;
-  color: #e9edf5;
+  color: var(--app-text);
   position: relative;
   overflow-x: hidden;
 }
@@ -50,10 +63,18 @@ body {
   animation: aurora-shift 28s linear infinite;
 }
 
+:root[data-theme='light'] #root::before {
+  background:
+    radial-gradient(900px 520px at 70% 20%, rgba(14, 165, 233, 0.16), transparent 60%),
+    radial-gradient(700px 520px at 15% 65%, rgba(16, 185, 129, 0.14), transparent 60%),
+    radial-gradient(620px 420px at 55% 80%, rgba(245, 158, 11, 0.12), transparent 60%),
+    linear-gradient(180deg, rgba(248, 250, 252, 0.96) 0%, rgba(226, 232, 240, 0.9) 45%, rgba(241, 245, 249, 0.96) 100%);
+}
+
 #root::after {
   background:
-    linear-gradient(transparent 24px, rgba(255, 255, 255, 0.04) 25px),
-    linear-gradient(90deg, transparent 24px, rgba(255, 255, 255, 0.04) 25px);
+    linear-gradient(transparent 24px, var(--grid-line) 25px),
+    linear-gradient(90deg, transparent 24px, var(--grid-line) 25px);
   background-size: 26px 26px;
   opacity: 0.35;
   mask-image: radial-gradient(circle at 70% 30%, #000 0%, transparent 60%);
@@ -69,8 +90,8 @@ body {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+    linear-gradient(var(--hover-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hover-grid-line) 1px, transparent 1px);
   background-size: 20px 20px;
   opacity: 0;
   transform: scale(1.08);
@@ -127,4 +148,60 @@ a {
 .glass-sheen:hover::after {
   opacity: 1;
   transform: rotate(0deg) translateY(-6px);
+}
+
+:root[data-theme='light'] .text-white,
+:root[data-theme='light'] .text-slate-100,
+:root[data-theme='light'] .text-slate-200,
+:root[data-theme='light'] .text-slate-200\/85,
+:root[data-theme='light'] .text-slate-300,
+:root[data-theme='light'] .text-slate-400,
+:root[data-theme='light'] .text-slate-500 {
+  color: #172033 !important;
+}
+
+:root[data-theme='light'] .text-emerald-100,
+:root[data-theme='light'] .text-emerald-100\/80,
+:root[data-theme='light'] .text-emerald-200,
+:root[data-theme='light'] .text-emerald-300 {
+  color: #047857 !important;
+}
+
+:root[data-theme='light'] .text-sky-100,
+:root[data-theme='light'] .text-sky-200 {
+  color: #0369a1 !important;
+}
+
+:root[data-theme='light'] .text-amber-100,
+:root[data-theme='light'] .text-amber-200 {
+  color: #b45309 !important;
+}
+
+:root[data-theme='light'] .text-indigo-200 {
+  color: #4f46e5 !important;
+}
+
+:root[data-theme='light'] .bg-white\/0,
+:root[data-theme='light'] .bg-white\/5,
+:root[data-theme='light'] .bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.72) !important;
+}
+
+:root[data-theme='light'] .bg-slate-950\/60,
+:root[data-theme='light'] .bg-slate-950\/70,
+:root[data-theme='light'] .bg-black\/40 {
+  background-color: rgba(248, 250, 252, 0.88) !important;
+}
+
+:root[data-theme='light'] .border-white\/5,
+:root[data-theme='light'] .border-white\/10,
+:root[data-theme='light'] .border-white\/20,
+:root[data-theme='light'] .border-white\/30 {
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+:root[data-theme='light'] input,
+:root[data-theme='light'] textarea,
+:root[data-theme='light'] select {
+  color: #172033;
 }
