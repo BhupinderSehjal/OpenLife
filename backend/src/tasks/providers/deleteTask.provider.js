@@ -9,8 +9,11 @@ async function deleteTaskProvider(req, res) {
    * .
    */
  try {
-    const deletedTask = await Task.deleteOne({ _id: req.body["_id"] });
-    res.status(StatusCodes.OK).json(deletedTask);
+    const result = await Task.deleteOne({ _id: req.body["_id"] });
+    if (result.deletedCount === 0) {
+      return res.status(StatusCodes.NOT_FOUND).json({ reason: "Task not found" });
+    }
+    res.status(StatusCodes.OK).json(result);
   } catch (error) {
     errorLogger("Error while deleting task: ", req, error);
     return res.status(StatusCodes.GATEWAY_TIMEOUT).json({
