@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Code2, Database, KeyRound, Server, ShieldCheck } from 'lucide-react'
 import GlassCard from '../../components/GlassCard/GlassCard'
 
@@ -34,6 +35,29 @@ const checks = [
   { icon: <KeyRound className="mb-3 h-5 w-5 text-sky-200" />, title: 'Auth-ready', body: 'Keep token examples generic until auth is wired into the UI.' },
   { icon: <ShieldCheck className="mb-3 h-5 w-5 text-sky-200" />, title: 'Status codes', body: 'Document 400, 401, 404, and 500 responses consistently.' },
 ]
+
+function CopyButton({ text }) {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Copy failed:', err)
+    }
+  }
+
+  return (
+    <button
+      onClick={handleCopy}
+      className="rounded-md border border-white/10 bg-white/10 px-2 py-1 text-xs text-slate-300 hover:bg-white/20 hover:text-white transition-colors"
+    >
+      {copied ? '✓ Copied!' : 'Copy'}
+    </button>
+  )
+}
 
 export default function ApiLab() {
   return (
@@ -92,9 +116,14 @@ export default function ApiLab() {
               <p className="mt-3 font-mono text-sm text-white">{endpoint.path}</p>
             </div>
             <p className="text-sm leading-relaxed text-slate-200">{endpoint.purpose}</p>
-            <pre className="overflow-x-auto rounded-lg border border-white/10 bg-slate-950/70 p-3 text-xs text-slate-200">
-              {endpoint.response}
-            </pre>
+            <div className="flex flex-col gap-1">
+              <div className="flex justify-end">
+                <CopyButton text={endpoint.response} />
+              </div>
+              <pre className="overflow-x-auto rounded-lg border border-white/10 bg-slate-950/70 p-3 text-xs text-slate-200">
+                {endpoint.response}
+              </pre>
+            </div>
           </div>
         ))}
       </section>
