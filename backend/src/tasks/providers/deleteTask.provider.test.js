@@ -1,5 +1,25 @@
-const { describe, test, mock } = require('node:test');
+const { beforeEach, describe, test, mock } = require('node:test');
 const assert = require('node:assert/strict');
+const { StatusCodes } = require('http-status-codes');
+const Task = require('../task.schema.js');
+const deleteTaskProvider = require('./deleteTask.provider.js');
+
+function createResponse() {
+  const response = {
+    statusCode: undefined,
+    body: undefined,
+    status: mock.fn(function status(code) {
+      this.statusCode = code;
+      return this;
+    }),
+    json: mock.fn(function json(body) {
+      this.body = body;
+      return this;
+    }),
+  };
+
+  return response;
+}
 
 describe('deleteTask provider', () => {
   beforeEach(() => {
@@ -7,26 +27,29 @@ describe('deleteTask provider', () => {
   });
 
   test('should delete task successfully', async () => {
-    const taskModel = require('../models/taskModel');
-    mock.method(taskModel, 'deleteById', async (id) => ({ deleted: true, id }));
-    const { deleteTask } = require('./deleteTask.provider');
-    const result = await deleteTask('task-1');
-    assert.ok(result.deleted);
-    assert.strictEqual(taskModel.deleteById.mock.calls.length, 1);
-    assert.strictEqual(taskModel.deleteById.mock.calls[0].arguments[0], 'task-1');
+    const deleteResult = { acknowledged: true, deletedCount: 1 };
+    mock.method(Task, 'deleteOne', async () => deleteResult);
+
+    const req = { body: { _id: 'task-1' } };
+    const res = createResponse();
+
+    await deleteTaskProvider(req, res);
+
+    assert.deepStrictEqual(Task.deleteOne.mock.calls[0].arguments[0], { _id: 'task-1' });
+    assert.strictEqual(res.statusCode, StatusCodes.OK);
+    assert.deepStrictEqual(res.body, deleteResult);
   });
 
-  test('should throw not found error when task does not exist', async () => {
-    const taskModel = require('../models/taskModel');
-    mock.method(taskModel, 'deleteById', async () => {
-      const error = new Error('Task not found');
-      error.code = 'NOT_FOUND';
-      throw error;
-    });
-    const { deleteTask } = require('./deleteTask.provider');
-    await assert.rejects(
-      async () => await deleteTask('nonexistent'),
-      { message: 'Task not found' }
-    );
+  test('should return not found when task does not exist', async () => {
+    mock.method(Task, 'deleteOne', async () => ({ acknowledged: true, deletedCount: 0 }));
+
+    const req = { body: { _id: 'missing-task' } };
+    const res = createResponse();
+
+    await deleteTaskProvider(req, res);
+
+    assert.deepStrictEqual(Task.deleteOne.mock.calls[0].arguments[0], { _id: 'missing-task' });
+    assert.strictEqual(res.statusCode, StatusCodes.NOT_FOUND);
+    assert.deepStrictEqual(res.body, { reason: 'Task not found' });
   });
 });
