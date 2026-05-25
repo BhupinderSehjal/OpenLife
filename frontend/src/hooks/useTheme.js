@@ -32,26 +32,27 @@ export function initializeTheme() {
 
 export function useTheme() {
   const [preference, setPreference] = useState(() => normalizeTheme(localStorage.getItem(THEME_STORAGE_KEY)))
-  const [resolvedTheme, setResolvedTheme] = useState(() => resolveTheme(preference))
+  const [systemTheme, setSystemTheme] = useState(() => getSystemTheme())
+  const resolvedTheme = preference === 'system' ? systemTheme : preference
 
   useEffect(() => {
     localStorage.setItem(THEME_STORAGE_KEY, preference)
     applyTheme(preference)
-    setResolvedTheme(resolveTheme(preference))
   }, [preference])
 
   useEffect(() => {
-    if (preference !== 'system') return undefined
-
     const mediaQuery = window.matchMedia('(prefers-color-scheme: light)')
     const handleChange = () => {
-      applyTheme('system')
-      setResolvedTheme(resolveTheme('system'))
+      setSystemTheme(getSystemTheme())
+
+      if (document.documentElement.dataset.themePreference === 'system') {
+        applyTheme('system')
+      }
     }
 
     mediaQuery.addEventListener('change', handleChange)
     return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [preference])
+  }, [])
 
   return {
     preference,

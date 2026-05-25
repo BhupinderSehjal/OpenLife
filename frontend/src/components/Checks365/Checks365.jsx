@@ -2,6 +2,36 @@ import React, { useEffect, useMemo, useState } from 'react'
 import './Checks365.css' // Import the CSS file for styling
 import { messages as messagesArray } from './messagesarray'
 
+const DaysGrid = ({
+  size = 'clamp(6px, 1.2vw, 14px)',
+  gap = 'clamp(4px, 1vw, 12px)',
+  currentDay = 1,
+}) => {
+  const days = Array.from({ length: 365 }, (_, i) => i + 1)
+  const sizeValue = typeof size === 'number' ? `${size}px` : size
+  const gapValue = typeof gap === 'number' ? `${gap}px` : gap
+
+  return (
+    <div
+      className="days-grid"
+      style={{ '--dot-size': sizeValue, '--dot-gap': gapValue }}
+      aria-label="365 days grid"
+      role="grid"
+    >
+      {days.map((day) => (
+        <button
+          key={day}
+          className={`day-dot ${day < currentDay ? 'day-dot-past' : day === currentDay ? 'day-dot-current' : 'day-dot-future'}`}
+          role="gridcell"
+          aria-label={`Day ${day}`}
+          title={`Day ${day}`}
+          onClick={(e) => e.currentTarget.classList.toggle('selected')}
+        />
+      ))}
+    </div>
+  )
+}
+
 const Checks365 = () => {
   const [now, setNow] = useState(() => new Date())
   const timeZone = useMemo(
@@ -46,36 +76,6 @@ const Checks365 = () => {
   const dayOfYear = Math.floor(
     (now - new Date(now.getFullYear(), 0, 0)) / msPerDay
   )
-
-  const DaysGrid = ({
-    size = 'clamp(6px, 1.2vw, 14px)',
-    gap = 'clamp(4px, 1vw, 12px)',
-    currentDay = 1,
-  }) => {
-    const days = Array.from({ length: 365 }, (_, i) => i + 1);
-    const sizeValue = typeof size === 'number' ? `${size}px` : size
-    const gapValue = typeof gap === 'number' ? `${gap}px` : gap
-
-    return (
-      <div
-        className="days-grid"
-        style={{ '--dot-size': sizeValue, '--dot-gap': gapValue }}
-        aria-label="365 days grid"
-        role="grid"
-      >
-        {days.map((day) => (
-          <button
-            key={day}
-            className={`day-dot ${day < currentDay ? 'day-dot-past' : day === currentDay ? 'day-dot-current' : 'day-dot-future'}`}
-            role="gridcell"
-            aria-label={`Day ${day}`}
-            title={`Day ${day}`}
-            onClick={(e) => e.currentTarget.classList.toggle('selected')}
-          />
-        ))}
-      </div>
-    );
-  };
 
   return (
     

@@ -15,20 +15,29 @@ const TimeUsageTracker = () => {
   });
 
   useEffect(() => {
-    loadActivities();
-  }, []);
+    let isActive = true;
 
-  const loadActivities = async () => {
-    try {
-      setLoading(true);
-      const data = await getActivities();
-      setActivities(data);
-    } catch (error) {
-      console.error('Failed to load activities:', error);
-    } finally {
-      setLoading(false);
+    async function loadInitialActivities() {
+      try {
+        const data = await getActivities();
+        if (isActive) {
+          setActivities(data);
+        }
+      } catch (error) {
+        console.error('Failed to load activities:', error);
+      } finally {
+        if (isActive) {
+          setLoading(false);
+        }
+      }
     }
-  };
+
+    Promise.resolve().then(loadInitialActivities);
+
+    return () => {
+      isActive = false;
+    };
+  }, []);
 
   const calculateDuration = (start, end) => {
     if (!start || !end) return '';
