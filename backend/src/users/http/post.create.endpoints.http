@@ -5,5 +5,5 @@ Content-Type: application/json
   "firstname": "John",
   "lastname": "Doe",
   "email": "user@example.com",
-  "password": "ExamplePassword123!"
+  "password": "REPLACE_WITH_PASSWORD"
 }
