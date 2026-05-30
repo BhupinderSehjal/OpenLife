@@ -6,7 +6,7 @@
 
 
 
-This checklist helps maintainers verify that an application is ready for deployment and that deployments complete successfully.
+This checklist helps maintainers verify that OpenLife is ready for deployment and that deployments complete successfully.
 
 
 
@@ -20,7 +20,69 @@ This checklist helps maintainers verify that an application is ready for deploym
 
 * Review open issues related to deployment.
 
-* Confirm that documentation is up to date.
+* Confirm documentation is up to date.
+
+
+
+## Build Verification
+
+
+
+Run a production build before deployment:
+
+
+
+```bash
+
+npm run build
+
+```
+
+
+
+* Verify the build completes successfully.
+
+* Resolve build errors before deploying.
+
+
+
+## Test Verification
+
+
+
+Run available tests:
+
+
+
+```bash
+
+npm test
+
+```
+
+
+
+* Verify all tests pass.
+
+
+
+## Dependency Audit
+
+
+
+Review dependency security:
+
+
+
+```bash
+
+npm audit
+
+```
+
+
+
+* Resolve critical issues before deployment.
 
 
 
@@ -28,7 +90,7 @@ This checklist helps maintainers verify that an application is ready for deploym
 
 
 
-Verify that all required environment variables are configured.
+Verify all required environment variables are configured.
 
 
 
@@ -56,15 +118,35 @@ Do not store secrets in the repository.
 
 
 
-1. Build the application.
+1\. Build the application.
 
-2. Configure deployment settings.
+2\. Configure deployment settings.
 
-3. Deploy the latest version.
+3\. Deploy the latest version.
 
-4. Monitor deployment logs.
+4\. Monitor deployment logs.
 
-5. Confirm deployment completes successfully.
+5\. Confirm deployment completes successfully.
+
+
+
+## Live Demo Smoke Test
+
+
+
+After deployment:
+
+
+
+* Open the live application.
+
+* Verify key routes load correctly.
+
+* Verify navigation works.
+
+* Verify authentication works if applicable.
+
+* Verify there are no visible errors.
 
 
 
@@ -99,6 +181,12 @@ Do not store secrets in the repository.
 
 
 * Deployment completed successfully.
+
+* Build verification completed.
+
+* Tests passed.
+
+* Audit reviewed.
 
 * Environment variables verified.
 
