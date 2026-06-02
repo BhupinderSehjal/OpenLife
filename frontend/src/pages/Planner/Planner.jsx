@@ -1,7 +1,9 @@
-import { useMemo, useState } from 'react'
-import { CalendarDays, CheckCircle2, Clock3, Plus, Target } from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'   // ← CHANGED: added useEffect
+import { CalendarDays, CheckCircle2, Clock3, Plus, RotateCcw, Target } from 'lucide-react'  // ← CHANGED: added RotateCcw icon
 import Button from '../../components/Button/Button'
 import GlassCard from '../../components/GlassCard/GlassCard'
+
+const STORAGE_KEY = 'planner-blocks'  // ← NEW: key for localStorage
 
 const defaultBlocks = [
   { id: 1, title: 'Morning planning', time: '08:30', duration: 20, type: 'Routine', done: true },
@@ -16,10 +18,24 @@ const typeStyles = {
 }
 
 export default function Planner() {
-  const [blocks, setBlocks] = useState(defaultBlocks)
+  // ← CHANGED: lazy initializer — reads localStorage ONCE on first render
+  const [blocks, setBlocks] = useState(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY)
+      return saved ? JSON.parse(saved) : defaultBlocks
+    } catch {
+      return defaultBlocks
+    }
+  })
+
   const [title, setTitle] = useState('')
   const [time, setTime] = useState('17:00')
   const [duration, setDuration] = useState(30)
+
+  // ← NEW: save to localStorage every time blocks changes
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(blocks))
+  }, [blocks])
 
   const totals = useMemo(() => {
     const planned = blocks.reduce((sum, block) => sum + Number(block.duration), 0)
@@ -50,24 +66,42 @@ export default function Planner() {
     setBlocks((current) => current.map((block) => (block.id === id ? { ...block, done: !block.done } : block)))
   }
 
+  // ← NEW: reset clears localStorage and restores starter blocks
+  function resetBlocks() {
+    localStorage.removeItem(STORAGE_KEY)
+    setBlocks(defaultBlocks)
+  }
+
   return (
     <div className="space-y-8">
       <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <GlassCard className="p-6">
           <div className="flex flex-col gap-4">
-            <div className="flex items-start gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-200/30 bg-emerald-200/10">
-                <CalendarDays className="h-5 w-5 text-emerald-200" />
+            <div className="flex items-start justify-between gap-3">  {/* ← CHANGED: added justify-between */}
+              <div className="flex items-start gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-200/30 bg-emerald-200/10">
+                  <CalendarDays className="h-5 w-5 text-emerald-200" />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">Today</p>
+                  <h2 className="text-2xl font-bold text-white">Build a realistic day before it starts</h2>
+                </div>
               </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">Today</p>
-                <h2 className="text-2xl font-bold text-white">Build a realistic day before it starts</h2>
-              </div>
+              {/* ← NEW: Reset button */}
+              <button
+                className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-300 transition hover:border-white/20 hover:text-white"
+                onClick={resetBlocks}
+                type="button"
+              >
+                <RotateCcw className="h-3 w-3" />
+                Reset
+              </button>
             </div>
             <p className="text-sm leading-relaxed text-slate-200/85">
               Use the planner to split the day into small commitments. This first version stores entries in page state so contributors
               can later connect it to local storage or the backend task API.
             </p>
+            {/* ... rest of JSX is unchanged ... */}
             <div className="grid gap-3 sm:grid-cols-3">
               <div className="rounded-xl border border-white/10 bg-white/5 p-4">
                 <Clock3 className="mb-3 h-5 w-5 text-sky-200" />
