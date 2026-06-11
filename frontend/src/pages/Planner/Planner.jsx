@@ -1,7 +1,9 @@
-import { useMemo, useState } from 'react'
-import { CalendarDays, CheckCircle2, Clock3, Plus, Target } from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'
+import { CalendarDays, CheckCircle2, Clock3, Plus, RotateCcw, Target } from 'lucide-react'
 import Button from '../../components/Button/Button'
 import GlassCard from '../../components/GlassCard/GlassCard'
+
+const PLANNER_STORAGE_KEY = 'openlife.planner.blocks'
 
 const defaultBlocks = [
   { id: 1, title: 'Morning planning', time: '08:30', duration: 20, type: 'Routine', done: true },
@@ -15,11 +17,27 @@ const typeStyles = {
   Growth: 'border-amber-300/40 bg-amber-300/10 text-amber-100',
 }
 
+function readStoredBlocks() {
+  try {
+    const savedBlocks = localStorage.getItem(PLANNER_STORAGE_KEY)
+    if (!savedBlocks) return defaultBlocks
+
+    const parsedBlocks = JSON.parse(savedBlocks)
+    return Array.isArray(parsedBlocks) ? parsedBlocks : defaultBlocks
+  } catch {
+    return defaultBlocks
+  }
+}
+
 export default function Planner() {
-  const [blocks, setBlocks] = useState(defaultBlocks)
+  const [blocks, setBlocks] = useState(readStoredBlocks)
   const [title, setTitle] = useState('')
   const [time, setTime] = useState('17:00')
   const [duration, setDuration] = useState(30)
+
+  useEffect(() => {
+    localStorage.setItem(PLANNER_STORAGE_KEY, JSON.stringify(blocks))
+  }, [blocks])
 
   const totals = useMemo(() => {
     const planned = blocks.reduce((sum, block) => sum + Number(block.duration), 0)
@@ -50,23 +68,38 @@ export default function Planner() {
     setBlocks((current) => current.map((block) => (block.id === id ? { ...block, done: !block.done } : block)))
   }
 
+  function resetBlocks() {
+    localStorage.removeItem(PLANNER_STORAGE_KEY)
+    setBlocks(defaultBlocks)
+  }
+
   return (
     <div className="space-y-8">
       <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <GlassCard className="p-6">
           <div className="flex flex-col gap-4">
-            <div className="flex items-start gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-200/30 bg-emerald-200/10">
-                <CalendarDays className="h-5 w-5 text-emerald-200" />
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div className="flex items-start gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-200/30 bg-emerald-200/10">
+                  <CalendarDays className="h-5 w-5 text-emerald-200" />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">Today</p>
+                  <h2 className="text-2xl font-bold text-white">Build a realistic day before it starts</h2>
+                </div>
               </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">Today</p>
-                <h2 className="text-2xl font-bold text-white">Build a realistic day before it starts</h2>
-              </div>
+              <button
+                className="inline-flex w-fit items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-white/20 hover:text-white"
+                onClick={resetBlocks}
+                type="button"
+              >
+                <RotateCcw className="h-3.5 w-3.5" />
+                Reset
+              </button>
             </div>
             <p className="text-sm leading-relaxed text-slate-200/85">
-              Use the planner to split the day into small commitments. This first version stores entries in page state so contributors
-              can later connect it to local storage or the backend task API.
+              Use the planner to split the day into small commitments. Blocks are saved in this browser so the plan stays available
+              after refresh; contributors can later connect it to the backend task API.
             </p>
             <div className="grid gap-3 sm:grid-cols-3">
               <div className="rounded-xl border border-white/10 bg-white/5 p-4">
