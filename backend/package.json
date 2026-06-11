@@ -32,7 +32,7 @@
     "jsonwebtoken": "^9.0.3",
     "mongodb": "^7.0.0",
     "mongoose": "^9.6.2",
-    "morgan": "^1.10.1",
+    "morgan": "^1.11.0",
     "multer": "^2.0.2",
     "swagger-jsdoc": "^6.3.0",
     "swagger-ui-express": "^5.0.1",
