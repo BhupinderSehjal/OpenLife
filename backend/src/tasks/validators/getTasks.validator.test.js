@@ -47,11 +47,23 @@ test("getTasksValidator rejects invalid order", async () => {
   assert.equal(result.errors.isEmpty(), false);
 });
 
-test("getTasksValidator allows provided period", async () => {
-  const result = await validate({ period: "weekly" });
+test("getTasksValidator allows supported periods", async () => {
+  for (const period of ["daily", "weekly", "monthly", "yearly"]) {
+    const result = await validate({ period });
 
-  assert.equal(result.errors.isEmpty(), true);
-  assert.equal(result.data.period, "weekly");
+    assert.equal(result.errors.isEmpty(), true);
+    assert.equal(result.data.period, period);
+  }
+});
+
+test("getTasksValidator rejects invalid period", async () => {
+  const result = await validate({ period: "hourly" });
+
+  assert.equal(result.errors.isEmpty(), false);
+  assert.equal(
+    result.errors.array()[0].msg,
+    "period must be one of ['daily', 'weekly', 'monthly', 'yearly']"
+  );
 });
 
 test("getTasksValidator does not default missing period", async () => {
