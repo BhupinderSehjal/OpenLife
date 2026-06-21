@@ -33,7 +33,7 @@
     "mongodb": "^7.0.0",
     "mongoose": "^9.6.3",
     "morgan": "^1.11.0",
-    "multer": "^2.0.2",
+    "multer": "^2.2.0",
     "swagger-jsdoc": "^6.3.0",
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.19.0",
