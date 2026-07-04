@@ -15,9 +15,9 @@ jobs:
     steps:
       - uses: actions/first-interaction@v3
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
 
-          issue-message: |
+          issue_message: |
             👋 Hi there! Welcome to **OpenLife** 🎉
 
             Thank you for opening your first issue.
@@ -31,7 +31,7 @@ jobs:
             💡 For new ideas or feature proposals, you can also start a discussion.
             We’re excited to have you here — happy contributing! 🚀
 
-          pr-message: |
+          pr_message: |
             🎉 Welcome and thank you for your first Pull Request to **OpenLife**!
 
             We truly appreciate your contribution and effort.
