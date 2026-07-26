@@ -12,14 +12,8 @@ const envFile = `.env.${process.env.NODE_ENV}`;
 // configure dotenv earlier in application
 dotenv.config({ path: envFile });
 
-// !Test FIRST SEE CONFIG WITHOUT PATH
-console.log(process.env.TEST_VARIABLE);
-
-
 const app = express();
 const port = parseInt(process.env.PORT) || 3001;
-
-console.log(process.env.NODE_ENV);
 
 //  Parsing request body
 app.use(express.json());

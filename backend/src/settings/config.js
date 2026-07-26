@@ -59,7 +59,6 @@ app.use("/", taskRouter);
 
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
-console.log(swaggerSpecs);
 
 // send back a 404 error for any unknown api request
 // Sequence is important
