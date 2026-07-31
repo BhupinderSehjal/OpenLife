@@ -57,3 +57,21 @@ jobs:
 
       - name: Test
         run: npm test
+
+  backend-dotnet:
+    name: ASP.NET Core Backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore backend-dotnet/OpenLife.DotNet.slnx
+
+      - name: Test
+        run: dotnet test backend-dotnet/OpenLife.DotNet.slnx --no-restore

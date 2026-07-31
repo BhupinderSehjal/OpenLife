@@ -169,6 +169,38 @@ public sealed class ApiSmokeTests : IClassFixture<WebApplicationFactory<Program>
     }
 
     [Fact]
+    public async Task Task_endpoint_returns_not_found_for_missing_task()
+    {
+        var response = await _client.GetAsync($"/api/tasks/{Guid.NewGuid()}");
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task Task_endpoint_update_returns_not_found_for_missing_task()
+    {
+        var request = new CreateTaskRequest(
+            "Missing Task",
+            "This update should not create a task",
+            "normal",
+            "daily",
+            DateTimeOffset.UtcNow.AddDays(1)
+        );
+
+        var response = await _client.PatchAsJsonAsync($"/api/tasks/{Guid.NewGuid()}", request);
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task Task_endpoint_delete_returns_not_found_for_missing_task()
+    {
+        var response = await _client.DeleteAsync($"/api/tasks/{Guid.NewGuid()}");
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
+
+    [Fact]
     public async Task Task_endpoint_deletes_task_successfully()
     {
         var request = new CreateTaskRequest(

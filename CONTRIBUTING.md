@@ -14,6 +14,7 @@ Whether you are a **beginner, student, fresher, or experienced developer**, your
 * [Who Can Contribute](#who-can-contribute)
 * [Ways to Contribute](#ways-to-contribute)
 * [Project Setup](#project-setup)
+* [Backend Tests With Node](#backend-tests-with-node)
 * [Folder Structure](#folder-structure)
 * [Contribution Workflow](#contribution-workflow)
 * [Coding Guidelines](#coding-guidelines)
@@ -106,6 +107,45 @@ npm run dev
 ```
 
 Use a local MongoDB instance and set the required environment variables in `backend/.env.development`.
+
+---
+
+## Backend Tests With Node
+
+The Node backend uses the built-in Node test runner, not Jest. Add focused tests as `*.test.js` files near the backend code they cover, then run:
+
+```bash
+cd backend
+npm test
+```
+
+Minimal validator test:
+
+```js
+const test = require("node:test");
+const assert = require("node:assert/strict");
+
+test("validator accepts a valid request", async () => {
+  const result = await validateRequest({ title: "Plan tomorrow" });
+
+  assert.equal(result.isValid, true);
+});
+```
+
+Minimal provider test:
+
+```js
+const test = require("node:test");
+const assert = require("node:assert/strict");
+
+test("provider returns not found for a missing item", async () => {
+  const result = await provider.findById("missing-id");
+
+  assert.equal(result.status, "not_found");
+});
+```
+
+Keep beginner PRs small: one validator, route, or provider behavior per test file is enough.
 
 ---
 
