@@ -5,7 +5,7 @@ export default function About() {
     <div className="space-y-8">
       <div className="flex flex-col gap-3">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">About</p>
-        <h1 className="text-3xl font-bold text-white sm:text-4xl">Why we are building OpenLife</h1>
+        <h2 className="text-3xl font-bold text-white sm:text-4xl">Why we are building OpenLife</h2>
         <div className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6 text-base text-slate-200/85 backdrop-blur">
           <p className="leading-relaxed">
             OpenLife is an open-source productivity and time-management project focused on helping individuals understand how they

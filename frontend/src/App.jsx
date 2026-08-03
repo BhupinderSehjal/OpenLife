@@ -10,90 +10,97 @@ import Insights from './pages/Insights/Insights'
 import Planner from './pages/Planner/Planner'
 import Settings from './pages/Settings/Settings'
 import TimeUsageTracker from './components/TimeUsageTracker/TimeUsageTracker'
+import Seo from './components/Seo/Seo'
 
 export default function App() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <BaseLayout title="OpenLife" subtitle="Daily Workflow & Time Management">
-            <Home />
-          </BaseLayout>
-        }
-      />
-      <Route
-        path="/about"
-        element={
-          <BaseLayout title="About OpenLife">
-            <About />
-          </BaseLayout>
-        }
-      />
-      <Route
-        path="/contribute"
-        element={
-          <BaseLayout title="Contribute to OpenLife">
-            <Contribute />
-          </BaseLayout>
-        }
-      />
-      <Route
-        path="/planner"
-        element={
-          <BaseLayout title="Daily Planner" subtitle="Plan focus blocks, routines, and recovery time">
-            <Planner />
-          </BaseLayout>
-        }
-      />
-      <Route
-        path="/insights"
-        element={
-          <BaseLayout title="Productivity Insights" subtitle="Review focus trends and daily balance">
-            <Insights />
-          </BaseLayout>
-        }
-      />
-      <Route
-        path="/api-lab"
-        element={
-          <BaseLayout title="API Lab" subtitle="Explore backend endpoints and expected responses">
-            <ApiLab />
-          </BaseLayout>
-        }
-      />
-      <Route
-        path="/contributor-hub"
-        element={
-          <BaseLayout title="Contributor Hub" subtitle="Find scoped work and ship clean pull requests">
-            <ContributorHub />
-          </BaseLayout>
-        }
-      />
-      <Route
-        path="/settings"
-        element={
-          <BaseLayout title="Settings" subtitle="Tune OpenLife defaults for planning and focus">
-            <Settings />
-          </BaseLayout>
-        }
-      />
-      <Route
-        path="/showcase"
-        element={
-          <BaseLayout title="OpenLife UI Showcase" subtitle="Reusable components and patterns">
-            <Showcase />
-          </BaseLayout>
-        }
-      />
-      <Route
-        path="/daily-TimeUsageTracker"
-        element={
-          <BaseLayout title="OpenLife UI Showcase" subtitle="Reusable components and patterns">
-            <TimeUsageTracker />
-          </BaseLayout>
-        }
-      />
-    </Routes>
+    <>
+      <Seo />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <BaseLayout
+              title="OpenLife: Open-Source Productivity & Time Tracking"
+              subtitle="Daily planning, habit reflection, and workflow insights"
+            >
+              <Home />
+            </BaseLayout>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <BaseLayout title="About OpenLife">
+              <About />
+            </BaseLayout>
+          }
+        />
+        <Route
+          path="/contribute"
+          element={
+            <BaseLayout title="Contribute to OpenLife">
+              <Contribute />
+            </BaseLayout>
+          }
+        />
+        <Route
+          path="/planner"
+          element={
+            <BaseLayout title="Daily Planner" subtitle="Plan focus blocks, routines, and recovery time">
+              <Planner />
+            </BaseLayout>
+          }
+        />
+        <Route
+          path="/insights"
+          element={
+            <BaseLayout title="Productivity Insights" subtitle="Review focus trends and daily balance">
+              <Insights />
+            </BaseLayout>
+          }
+        />
+        <Route
+          path="/api-lab"
+          element={
+            <BaseLayout title="API Lab" subtitle="Explore backend endpoints and expected responses">
+              <ApiLab />
+            </BaseLayout>
+          }
+        />
+        <Route
+          path="/contributor-hub"
+          element={
+            <BaseLayout title="Contributor Hub" subtitle="Find scoped work and ship clean pull requests">
+              <ContributorHub />
+            </BaseLayout>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <BaseLayout title="Settings" subtitle="Tune OpenLife defaults for planning and focus">
+              <Settings />
+            </BaseLayout>
+          }
+        />
+        <Route
+          path="/showcase"
+          element={
+            <BaseLayout title="OpenLife UI Showcase" subtitle="Reusable components and patterns">
+              <Showcase />
+            </BaseLayout>
+          }
+        />
+        <Route
+          path="/daily-TimeUsageTracker"
+          element={
+            <BaseLayout title="Daily Time Usage Tracker" subtitle="Understand how your time is distributed throughout the day">
+              <TimeUsageTracker />
+            </BaseLayout>
+          }
+        />
+      </Routes>
+    </>
   )
 }

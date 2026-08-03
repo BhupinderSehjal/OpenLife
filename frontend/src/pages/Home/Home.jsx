@@ -18,7 +18,7 @@ export default function Home() {
       <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="hover-grid rounded-2xl border border-emerald-300/30 bg-emerald-300/10 p-7 backdrop-blur">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">Welcome</p>
-          <h1 className="text-3xl font-bold text-white sm:text-4xl">OpenLife (Daily Workflow & Time Management)</h1>
+          <h2 className="text-3xl font-bold text-white sm:text-4xl">Plan your day and understand where your time goes</h2>
           <p className="mt-3 text-sm leading-relaxed text-slate-200">
             A beginner-friendly, open-source workspace where you can plan your day, protect focus time, and learn how to build React
             components alongside the community.
@@ -82,6 +82,21 @@ export default function Home() {
           perfect here.
         </Card>
       </div>
+
+      <section className="hover-grid rounded-2xl border border-white/10 bg-white/5 p-6 text-slate-200 backdrop-blur">
+        <h2 className="text-xl font-bold text-white">Daily planning and time tracking for better focus</h2>
+        <div className="mt-3 space-y-3 text-sm leading-relaxed text-slate-300">
+          <p>
+            OpenLife brings daily planning, time tracking, and habit reflection into one open-source productivity workspace. Plan
+            focused work alongside routines and breaks, then review the day to understand which activities supported your goals.
+          </p>
+          <p>
+            The goal is not to fill every minute. OpenLife helps you build a realistic workflow, notice patterns in your time, and make
+            small improvements without losing space for recovery. Your daily plan and productivity insights stay clear enough to use
+            consistently and simple enough for new contributors to extend.
+          </p>
+        </div>
+      </section>
 
       <div className="grid gap-6 md:grid-cols-3">
         <Tasks />

@@ -1,56 +1,83 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/src/assets/OpenLife_Logo.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <link rel="canonical" href="https://www.openlife.in/" />
+    <title>OpenLife | Productivity, Time Tracking &amp; Daily Planning</title>
+    <meta
+      name="description"
+      content="OpenLife is an open-source productivity app for daily planning, time tracking, habit reflection, focus management, and workflow analysis."
+    />
+    <link rel="canonical" href="https://www.openlife.in/" />
+    <link rel="alternate" hreflang="en" href="https://www.openlife.in/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.openlife.in/" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
-  <!-- Primary SEO -->
-  <title>OpenLife | Daily Workflow & Time Management</title>
-  <meta name="description"
-    content="OpenLife is a beginner-friendly, open-source workspace to plan your day, protect focus time, and learn React with the community." />
-  <link rel="canonical" href="https://www.openlife.in/" /> <!-- Open Graph (Facebook, LinkedIn, etc.) -->
-  <meta property="og:title" content="OpenLife | Daily Workflow & Time Management" />
-  <meta property="og:description" content="Plan your day, protect focus time, and learn React components with the OpenLife community." />
-  <meta property="og:image" content="https://www.openlife.in/src/assets/OpenLife_Logo.png" />
-  <meta property="og:url" content="https://www.openlife.in/" />
-  <meta property="og:type" content="website" /> <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="OpenLife | Daily Workflow & Time Management" />
-  <meta name="twitter:description" content="Beginner-friendly, open-source workspace for productivity and React learning." />
-  <meta name="twitter:image" content="https://www.openlife.in/src/assets/OpenLife_Logo.png" /> <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet" /> <!-- Structured Data -->
-  <script
-    type="application/ld+json"> { "@context": "https://schema.org", "@type": "WebSite", "name": "OpenLife", "url": "https://yourwebsite.com", "description": "OpenLife is a beginner-friendly, open-source workspace to plan your day, protect focus time, and learn React with the community.", "author": { "@type": "Person", "name": "Bhupinder Sehjal" } } </script>
+    <link rel="icon" type="image/png" href="/openlife-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
 
-  <title>OpenLife by Bhupinder Sehjal</title>
-</head>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OpenLife" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="OpenLife | Productivity, Time Tracking &amp; Daily Planning" />
+    <meta
+      property="og:description"
+      content="Plan your day, track time, reflect on habits, and improve your workflow with the open-source OpenLife productivity app."
+    />
+    <meta property="og:url" content="https://www.openlife.in/" />
+    <meta property="og:image" content="https://www.openlife.in/openlife-logo.png" />
+    <meta property="og:image:alt" content="OpenLife logo" />
 
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "OpenLife by Bhupinder Sehjal",
-  "url": "https://yourwebsite.com",
-  "author": {
-    "@type": "Person",
-    "name": "Bhupinder Sehjal"
-  }
-}
-</script>
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="OpenLife | Productivity, Time Tracking &amp; Daily Planning" />
+    <meta
+      name="twitter:description"
+      content="Plan your day, track time, reflect on habits, and improve your workflow with the open-source OpenLife productivity app."
+    />
+    <meta name="twitter:image" content="https://www.openlife.in/openlife-logo.png" />
+    <meta name="twitter:image:alt" content="OpenLife logo" />
 
-</body>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://www.openlife.in/#website",
+            "name": "OpenLife",
+            "url": "https://www.openlife.in/",
+            "description": "An open-source productivity app for daily planning, time tracking, habit reflection, and workflow analysis.",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://www.openlife.in/#application",
+            "name": "OpenLife",
+            "url": "https://www.openlife.in/",
+            "applicationCategory": "ProductivityApplication",
+            "operatingSystem": "Web",
+            "isAccessibleForFree": true,
+            "codeRepository": "https://github.com/BhupinderSehjal/OpenLife",
+            "description": "Open-source productivity, time tracking, habit reflection, and workflow analysis software.",
+            "author": {
+              "@type": "Person",
+              "name": "Bhupinder Sehjal",
+              "url": "https://github.com/BhupinderSehjal"
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
 
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

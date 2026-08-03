@@ -1,0 +1,15 @@
+# OpenLife
+
+> OpenLife is an open-source productivity, time tracking, habit reflection, and workflow analysis web app.
+
+OpenLife helps people plan realistic days, protect focus time, review how they spend time, and improve daily workflows. The project is intentionally beginner-friendly and welcomes focused code, design, testing, and documentation contributions.
+
+## Main pages
+
+- [Home](https://www.openlife.in/): Product overview and daily workflow tools.
+- [About](https://www.openlife.in/about): Project purpose, vision, and open-source philosophy.
+- [Daily Planner](https://www.openlife.in/planner): Plan focus blocks, routines, and recovery time.
+- [Productivity Insights](https://www.openlife.in/insights): Review focus trends and daily balance.
+- [Contribute](https://www.openlife.in/contribute): Contribution workflow and beginner guidance.
+- [Contributor Hub](https://www.openlife.in/contributor-hub): Scoped work and project resources.
+- [Source code](https://github.com/BhupinderSehjal/OpenLife): OpenLife repository on GitHub.

@@ -110,7 +110,7 @@ const TimeUsageTracker = () => {
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200 mb-1">Time Tracking</p>
-              <h1 className="text-3xl font-bold text-white sm:text-4xl mb-2">Daily Time Usage</h1>
+              <h2 className="text-3xl font-bold text-white sm:text-4xl mb-2">Daily Time Usage</h2>
               <p className="text-sm leading-relaxed text-slate-200">Track how you spend your time throughout the day</p>
             </div>
             <button
