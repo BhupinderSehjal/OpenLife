@@ -167,33 +167,39 @@ export default function Planner() {
       </section>
 
       <section className="grid gap-4">
-        {blocks.map((block) => (
-          <button
-            className="hover-grid flex w-full flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur transition hover:border-emerald-200/40 sm:flex-row sm:items-center sm:justify-between"
-            key={block.id}
-            onClick={() => toggleBlock(block.id)}
-            type="button"
-          >
-            <div className="flex items-start gap-3">
-              <span
-                className={`mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
-                  block.done ? 'border-emerald-200 bg-emerald-200 text-slate-950' : 'border-white/30'
-                }`}
-              >
-                {block.done ? <CheckCircle2 className="h-4 w-4" /> : null}
-              </span>
-              <div>
-                <p className={`font-semibold ${block.done ? 'text-slate-300 line-through' : 'text-white'}`}>{block.title}</p>
-                <p className="text-sm text-slate-300">
-                  {block.time} · {block.duration} minutes
-                </p>
+        {blocks.length === 0 ? (
+          <div className="rounded-xl border border-dashed border-white/10 bg-white/5 p-8 text-center backdrop-blur">
+            <p className="text-sm text-slate-400">No scheduled blocks yet. Add a focus block above to start planning your day!</p>
+          </div>
+        ) : (
+          blocks.map((block) => (
+            <button
+              className="hover-grid flex w-full flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur transition hover:border-emerald-200/40 sm:flex-row sm:items-center sm:justify-between"
+              key={block.id}
+              onClick={() => toggleBlock(block.id)}
+              type="button"
+            >
+              <div className="flex items-start gap-3">
+                <span
+                  className={`mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
+                    block.done ? 'border-emerald-200 bg-emerald-200 text-slate-950' : 'border-white/30'
+                  }`}
+                >
+                  {block.done ? <CheckCircle2 className="h-4 w-4" /> : null}
+                </span>
+                <div>
+                  <p className={`font-semibold ${block.done ? 'text-slate-300 line-through' : 'text-white'}`}>{block.title}</p>
+                  <p className="text-sm text-slate-300">
+                    {block.time} · {block.duration} minutes
+                  </p>
+                </div>
               </div>
-            </div>
-            <span className={`w-fit rounded-full border px-3 py-1 text-xs font-semibold ${typeStyles[block.type]}`}>
-              {block.type}
-            </span>
-          </button>
-        ))}
+              <span className={`w-fit rounded-full border px-3 py-1 text-xs font-semibold ${typeStyles[block.type]}`}>
+                {block.type}
+              </span>
+            </button>
+          ))
+        )}
       </section>
     </div>
   )
