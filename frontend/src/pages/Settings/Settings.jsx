@@ -66,7 +66,7 @@ export default function Settings() {
           <div className="grid gap-3 sm:grid-cols-4">
             {durations.map((duration) => (
               <button
-                className={`rounded-xl border px-4 py-4 text-sm font-bold transition ${
+                className={`rounded-xl border px-4 py-4 text-sm font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300 ${
                   focusDuration === duration
                     ? 'border-emerald-200 bg-emerald-200 text-slate-950'
                     : 'border-white/10 bg-white/5 text-slate-200 hover:border-emerald-200/50'
@@ -99,7 +99,7 @@ export default function Settings() {
           <div className="grid gap-3 sm:grid-cols-3">
             {themes.map((item) => (
               <button
-                className={`flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-semibold transition ${
+                className={`flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 ${
                   theme === item.id
                     ? 'border-sky-200 bg-sky-200 text-slate-950'
                     : 'border-white/10 bg-white/5 text-slate-200 hover:border-sky-200/50'

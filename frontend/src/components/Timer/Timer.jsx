@@ -46,7 +46,7 @@ export default function Timer() {
       <div className="mb-3 font-mono text-3xl font-bold text-white">{formatTime(seconds)}</div>
       <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.2em]">
         <button
-          className="rounded-full border border-emerald-300/60 bg-emerald-300/20 px-3 py-2 text-emerald-100 transition hover:-translate-y-0.5 hover:bg-emerald-300/30 hover:shadow-[0_10px_24px_rgba(105,255,226,0.3)] disabled:cursor-not-allowed disabled:opacity-40"
+          className="rounded-full border border-emerald-300/60 bg-emerald-300/20 px-3 py-2 text-emerald-100 transition hover:-translate-y-0.5 hover:bg-emerald-300/30 hover:shadow-[0_10px_24px_rgba(105,255,226,0.3)] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
           type="button"
           onClick={handleStart}
           disabled={isRunning}
@@ -54,7 +54,7 @@ export default function Timer() {
           Start
         </button>
         <button
-          className="rounded-full border border-rose-300/60 bg-rose-300/15 px-3 py-2 text-rose-100 transition hover:-translate-y-0.5 hover:bg-rose-300/30 hover:shadow-[0_10px_24px_rgba(251,113,133,0.25)] disabled:cursor-not-allowed disabled:opacity-40"
+          className="rounded-full border border-rose-300/60 bg-rose-300/15 px-3 py-2 text-rose-100 transition hover:-translate-y-0.5 hover:bg-rose-300/30 hover:shadow-[0_10px_24px_rgba(251,113,133,0.25)] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-300"
           type="button"
           onClick={handleStop}
           disabled={!isRunning}
@@ -62,7 +62,7 @@ export default function Timer() {
           Stop
         </button>
         <button
-          className="rounded-full border border-white/20 bg-white/5 px-3 py-2 text-white/80 transition hover:-translate-y-0.5 hover:border-emerald-200/70 hover:text-emerald-100 hover:shadow-[0_10px_24px_rgba(105,255,226,0.2)]"
+          className="rounded-full border border-white/20 bg-white/5 px-3 py-2 text-white/80 transition hover:-translate-y-0.5 hover:border-emerald-200/70 hover:text-emerald-100 hover:shadow-[0_10px_24px_rgba(105,255,226,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
           type="button"
           onClick={handleReset}
         >

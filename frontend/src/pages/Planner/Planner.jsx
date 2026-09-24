@@ -89,7 +89,7 @@ export default function Planner() {
                 </div>
               </div>
               <button
-                className="inline-flex w-fit items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-white/20 hover:text-white"
+                className="inline-flex w-fit items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-white/20 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
                 onClick={resetBlocks}
                 type="button"
               >
@@ -169,7 +169,7 @@ export default function Planner() {
       <section className="grid gap-4">
         {blocks.map((block) => (
           <button
-            className="hover-grid flex w-full flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur transition hover:border-emerald-200/40 sm:flex-row sm:items-center sm:justify-between"
+            className="hover-grid flex w-full flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur transition hover:border-emerald-200/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300 sm:flex-row sm:items-center sm:justify-between"
             key={block.id}
             onClick={() => toggleBlock(block.id)}
             type="button"

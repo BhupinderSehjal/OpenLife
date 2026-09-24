@@ -52,7 +52,7 @@ function CopyButton({ text }) {
   return (
     <button
       onClick={handleCopy}
-      className="rounded-md border border-white/10 bg-white/10 px-2 py-1 text-xs text-slate-300 hover:bg-white/20 hover:text-white transition-colors"
+      className="rounded-md border border-white/10 bg-white/10 px-2 py-1 text-xs text-slate-300 hover:bg-white/20 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
     >
       {copied ? '✓ Copied!' : 'Copy'}
     </button>
