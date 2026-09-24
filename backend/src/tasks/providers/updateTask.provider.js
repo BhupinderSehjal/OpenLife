@@ -9,6 +9,10 @@ async function updateTaskProvider(req, res) {
   try {
     const task = await Task.findById(req.body["_id"]).exec();
 
+    if (!task) {
+      return res.status(StatusCodes.NOT_FOUND).json({ reason: "Task not found" });
+    }
+
     //  Update the task
     task.title = validatedData.title || task.title;
     task.description = validatedData.description || task.description;
