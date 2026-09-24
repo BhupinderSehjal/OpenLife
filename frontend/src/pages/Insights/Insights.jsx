@@ -1,5 +1,6 @@
 import { Activity, BarChart3, BatteryCharging, Moon, TrendingUp } from 'lucide-react'
 import GlassCard from '../../components/GlassCard/GlassCard'
+import WeeklyActivityChart from '../../components/WeeklyActivityChart/WeeklyActivityChart'
 
 const days = [
   { day: 'Mon', focus: 150, admin: 45, recovery: 35 },
@@ -17,17 +18,6 @@ const recommendations = [
 
 export default function Insights() {
   const weeklyData = days.filter(Boolean)
-  const chartSegments = [
-    { key: 'focus', label: 'Focus', className: 'bg-emerald-300', textClassName: 'text-emerald-200' },
-    { key: 'admin', label: 'Admin', className: 'bg-sky-300', textClassName: 'text-sky-200' },
-    { key: 'recovery', label: 'Recovery', className: 'bg-indigo-300', textClassName: 'text-indigo-200' },
-  ]
-  const maxTotal = Math.max(
-    1,
-    ...weeklyData.map((day) =>
-      chartSegments.reduce((sum, segment) => sum + Number(day[segment.key] ?? 0), 0)
-    )
-  )
   const totalFocus = days.reduce((sum, day) => sum + day.focus, 0)
   const totalRecovery = days.reduce((sum, day) => sum + day.recovery, 0)
 
@@ -75,56 +65,7 @@ export default function Insights() {
             </div>
             <Activity className="h-5 w-5 text-emerald-200" />
           </div>
-          {weeklyData.length > 0 ? (
-            <div className="space-y-5">
-              <div className="flex flex-wrap gap-3" aria-label="Chart legend">
-                {chartSegments.map((segment) => (
-                  <span className={`inline-flex items-center gap-2 text-xs font-semibold ${segment.textClassName}`} key={segment.key}>
-                    <span className={`h-2.5 w-2.5 rounded-full ${segment.className}`} />
-                    {segment.label}
-                  </span>
-                ))}
-              </div>
-              <div className="space-y-4" role="list" aria-label="Weekly activity minutes by category">
-                {weeklyData.map((day) => {
-                  const totalMinutes = chartSegments.reduce(
-                    (sum, segment) => sum + Number(day[segment.key] ?? 0),
-                    0
-                  )
-
-                  return (
-                    <div className="grid grid-cols-[44px_1fr_58px] items-center gap-3" key={day.day} role="listitem">
-                      <span className="text-sm font-semibold text-slate-200">{day.day}</span>
-                      <div
-                        aria-label={`${day.day}: ${day.focus} focus minutes, ${day.admin} admin minutes, ${day.recovery} recovery minutes`}
-                        className="h-4 overflow-hidden rounded-full bg-white/10"
-                      >
-                        <div className="flex h-full rounded-full" style={{ width: `${(totalMinutes / maxTotal) * 100}%` }}>
-                          {chartSegments.map((segment) => {
-                            const segmentMinutes = Number(day[segment.key] ?? 0)
-
-                            return segmentMinutes > 0 ? (
-                              <span
-                                aria-hidden="true"
-                                className={`h-full ${segment.className}`}
-                                key={segment.key}
-                                style={{ width: `${(segmentMinutes / totalMinutes) * 100}%` }}
-                              />
-                            ) : null
-                          })}
-                        </div>
-                      </div>
-                      <span className="text-right text-sm text-slate-300">{totalMinutes}m</span>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          ) : (
-            <div className="rounded-xl border border-dashed border-white/15 bg-white/5 p-5 text-sm text-slate-300">
-              Weekly insight data will appear here after focus, admin, or recovery minutes are recorded.
-            </div>
-          )}
+          <WeeklyActivityChart data={weeklyData} />
         </GlassCard>
       </section>
 
