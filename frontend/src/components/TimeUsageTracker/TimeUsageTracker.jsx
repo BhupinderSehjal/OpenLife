@@ -115,7 +115,7 @@ const TimeUsageTracker = () => {
             </div>
             <button
               onClick={() => setShowAddForm(!showAddForm)}
-              className="flex items-center gap-2 px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:-translate-y-0.5"
+              className="flex items-center gap-2 px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
             >
               <Plus className="w-5 h-5" />
               Add Activity
@@ -181,7 +181,6 @@ const TimeUsageTracker = () => {
                 </div>
               </div>
 
-             
               <div className="md:col-span-2">
                 <label className="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-300 mb-2">
                   <FileText className="w-3 h-3 inline mr-1" />
@@ -200,13 +199,13 @@ const TimeUsageTracker = () => {
             <div className="flex gap-3 mt-6">
               <button
                 onClick={handleAddActivity}
-                className="px-6 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-semibold transition-all duration-300 hover:shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+                className="px-6 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-semibold transition-all duration-300 hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
               >
                 Add Activity
               </button>
               <button
                 onClick={() => setShowAddForm(false)}
-                className="px-6 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-lg font-semibold transition-all duration-300"
+                className="px-6 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-lg font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
               >
                 Cancel
               </button>
@@ -253,7 +252,7 @@ const TimeUsageTracker = () => {
 
                     <button
                       onClick={() => handleDeleteActivity(activity.id)}
-                      className="flex-shrink-0 p-2 text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                      className="flex-shrink-0 p-2 text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-all opacity-0 group-hover:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-300"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
