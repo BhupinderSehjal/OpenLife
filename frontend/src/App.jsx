@@ -11,7 +11,7 @@ import Planner from './pages/Planner/Planner'
 import Settings from './pages/Settings/Settings'
 import TimeUsageTracker from './components/TimeUsageTracker/TimeUsageTracker'
 import Seo from './components/Seo/Seo'
-
+import NotFound from './pages/NotFound/NotFound'
 export default function App() {
   return (
     <>
@@ -100,6 +100,7 @@ export default function App() {
             </BaseLayout>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   )
