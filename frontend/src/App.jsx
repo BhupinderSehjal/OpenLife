@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import BaseLayout from './layouts/BaseLayout'
+
 import Home from './pages/Home/Home'
 import About from './pages/About/About'
 import ApiLab from './pages/ApiLab/ApiLab'
@@ -9,6 +10,8 @@ import Showcase from './pages/Showcase/Showcase'
 import Insights from './pages/Insights/Insights'
 import Planner from './pages/Planner/Planner'
 import Settings from './pages/Settings/Settings'
+import Dashboard from './pages/Dashboard/Dashboard'
+
 import TimeUsageTracker from './components/TimeUsageTracker/TimeUsageTracker'
 import Seo from './components/Seo/Seo'
 
@@ -16,7 +19,9 @@ export default function App() {
   return (
     <>
       <Seo />
+
       <Routes>
+        {/* Home */}
         <Route
           path="/"
           element={
@@ -28,6 +33,21 @@ export default function App() {
             </BaseLayout>
           }
         />
+
+        {/* Dashboard */}
+        <Route
+          path="/dashboard"
+          element={
+            <BaseLayout
+              title="Dashboard"
+              subtitle="Explore your daily workflow, focus patterns, and productivity insights"
+            >
+              <Dashboard />
+            </BaseLayout>
+          }
+        />
+
+        {/* About */}
         <Route
           path="/about"
           element={
@@ -36,6 +56,8 @@ export default function App() {
             </BaseLayout>
           }
         />
+
+        {/* Contribute */}
         <Route
           path="/contribute"
           element={
@@ -44,58 +66,93 @@ export default function App() {
             </BaseLayout>
           }
         />
+
+        {/* Planner */}
         <Route
           path="/planner"
           element={
-            <BaseLayout title="Daily Planner" subtitle="Plan focus blocks, routines, and recovery time">
+            <BaseLayout
+              title="Daily Planner"
+              subtitle="Plan focus blocks, routines, and recovery time"
+            >
               <Planner />
             </BaseLayout>
           }
         />
+
+        {/* Insights */}
         <Route
           path="/insights"
           element={
-            <BaseLayout title="Productivity Insights" subtitle="Review focus trends and daily balance">
+            <BaseLayout
+              title="Productivity Insights"
+              subtitle="Review focus trends and daily balance"
+            >
               <Insights />
             </BaseLayout>
           }
         />
+
+        {/* API Lab */}
         <Route
           path="/api-lab"
           element={
-            <BaseLayout title="API Lab" subtitle="Explore backend endpoints and expected responses">
+            <BaseLayout
+              title="API Lab"
+              subtitle="Explore backend endpoints and expected responses"
+            >
               <ApiLab />
             </BaseLayout>
           }
         />
+
+        {/* Contributor Hub */}
         <Route
           path="/contributor-hub"
           element={
-            <BaseLayout title="Contributor Hub" subtitle="Find scoped work and ship clean pull requests">
+            <BaseLayout
+              title="Contributor Hub"
+              subtitle="Find scoped work and ship clean pull requests"
+            >
               <ContributorHub />
             </BaseLayout>
           }
         />
+
+        {/* Settings */}
         <Route
           path="/settings"
           element={
-            <BaseLayout title="Settings" subtitle="Tune OpenLife defaults for planning and focus">
+            <BaseLayout
+              title="Settings"
+              subtitle="Tune OpenLife defaults for planning and focus"
+            >
               <Settings />
             </BaseLayout>
           }
         />
+
+        {/* UI Showcase */}
         <Route
           path="/showcase"
           element={
-            <BaseLayout title="OpenLife UI Showcase" subtitle="Reusable components and patterns">
+            <BaseLayout
+              title="OpenLife UI Showcase"
+              subtitle="Reusable components and patterns"
+            >
               <Showcase />
             </BaseLayout>
           }
         />
+
+        {/* Daily Time Usage Tracker */}
         <Route
           path="/daily-TimeUsageTracker"
           element={
-            <BaseLayout title="Daily Time Usage Tracker" subtitle="Understand how your time is distributed throughout the day">
+            <BaseLayout
+              title="Daily Time Usage Tracker"
+              subtitle="Understand how your time is distributed throughout the day"
+            >
               <TimeUsageTracker />
             </BaseLayout>
           }
