@@ -11,6 +11,7 @@ import Planner from './pages/Planner/Planner'
 import Settings from './pages/Settings/Settings'
 import TimeUsageTracker from './components/TimeUsageTracker/TimeUsageTracker'
 import Seo from './components/Seo/Seo'
+import NotFound from './pages/NotFound/NotFound'
 
 export default function App() {
   return (
@@ -47,7 +48,10 @@ export default function App() {
         <Route
           path="/planner"
           element={
-            <BaseLayout title="Daily Planner" subtitle="Plan focus blocks, routines, and recovery time">
+            <BaseLayout
+              title="Daily Planner"
+              subtitle="Plan focus blocks, routines, and recovery time"
+            >
               <Planner />
             </BaseLayout>
           }
@@ -55,7 +59,10 @@ export default function App() {
         <Route
           path="/insights"
           element={
-            <BaseLayout title="Productivity Insights" subtitle="Review focus trends and daily balance">
+            <BaseLayout
+              title="Productivity Insights"
+              subtitle="Review focus trends and daily balance"
+            >
               <Insights />
             </BaseLayout>
           }
@@ -63,7 +70,10 @@ export default function App() {
         <Route
           path="/api-lab"
           element={
-            <BaseLayout title="API Lab" subtitle="Explore backend endpoints and expected responses">
+            <BaseLayout
+              title="API Lab"
+              subtitle="Explore backend endpoints and expected responses"
+            >
               <ApiLab />
             </BaseLayout>
           }
@@ -71,7 +81,10 @@ export default function App() {
         <Route
           path="/contributor-hub"
           element={
-            <BaseLayout title="Contributor Hub" subtitle="Find scoped work and ship clean pull requests">
+            <BaseLayout
+              title="Contributor Hub"
+              subtitle="Find scoped work and ship clean pull requests"
+            >
               <ContributorHub />
             </BaseLayout>
           }
@@ -79,7 +92,10 @@ export default function App() {
         <Route
           path="/settings"
           element={
-            <BaseLayout title="Settings" subtitle="Tune OpenLife defaults for planning and focus">
+            <BaseLayout
+              title="Settings"
+              subtitle="Tune OpenLife defaults for planning and focus"
+            >
               <Settings />
             </BaseLayout>
           }
@@ -87,7 +103,10 @@ export default function App() {
         <Route
           path="/showcase"
           element={
-            <BaseLayout title="OpenLife UI Showcase" subtitle="Reusable components and patterns">
+            <BaseLayout
+              title="OpenLife UI Showcase"
+              subtitle="Reusable components and patterns"
+            >
               <Showcase />
             </BaseLayout>
           }
@@ -95,11 +114,17 @@ export default function App() {
         <Route
           path="/daily-TimeUsageTracker"
           element={
-            <BaseLayout title="Daily Time Usage Tracker" subtitle="Understand how your time is distributed throughout the day">
+            <BaseLayout
+              title="Daily Time Usage Tracker"
+              subtitle="Understand how your time is distributed throughout the day"
+            >
               <TimeUsageTracker />
             </BaseLayout>
           }
         />
+
+        {/* Catch-all route for unknown URLs */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   )
